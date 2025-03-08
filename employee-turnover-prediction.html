@@ -1,0 +1,136 @@
+---
+layout: default
+title: Employee Turnover Prediction - Michael Teixeira
+---
+
+<hr>
+
+<h1>Reducing Employee Attrition: Machine Learning-Based Early Warning System</h1>
+
+<a href="https://github.com/Tex30/employee-turnover-prediction" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub" alt="View on GitHub">
+</a>
+
+<p>Designed and implemented an XGBoost machine learning model to predict employee turnover with 98.5% accuracy. Identified key drivers of attrition and developed actionable recommendations that could potentially reduce turnover rates by 15-20%, saving the company an estimated $1.2M annually in replacement costs.</p>
+
+<hr>
+
+<h2>Problem Statement</h2>
+
+<p>A mid-sized company was experiencing high employee turnover rates, resulting in significant recruitment costs, reduced productivity, and loss of institutional knowledge. HR leaders needed to understand the factors driving departures and identify at-risk employees before they resigned to implement proactive retention strategies.</p>
+
+<hr>
+
+<h2>Technical Approach</h2>
+
+<h3>Data Preparation & Exploration</h3>
+<ul>
+    <li>Cleaned and preprocessed HR dataset containing 14,999 employee records</li>
+    <li>Engineered relevant features including satisfaction metrics, workload indicators, and tenure variables</li>
+    <li>Conducted exploratory data analysis to identify preliminary patterns</li>
+</ul>
+
+<h3>Model Development</h3>
+<ul>
+    <li>Implemented multiple classification algorithms (Logistic Regression, Random Forest, XGBoost)</li>
+    <li>Performed hyperparameter tuning using RandomizedSearchCV and GridSearchCV</li>
+    <li>Optimized decision threshold to balance precision and recall</li>
+    <li>Validated model performance using stratified cross-validation</li>
+</ul>
+
+<h3>Evaluation & Interpretation</h3>
+<ul>
+    <li>Evaluated model using comprehensive metrics (accuracy, precision, recall, F1, AUC)</li>
+    <li>Generated feature importance rankings to identify key turnover drivers</li>
+    <li>Created visualizations including confusion matrices, ROC curves, and precision-recall curves</li>
+    <li>Analyzed patterns in misclassified cases to understand model limitations</li>
+</ul>
+
+<hr>
+
+<h2>Results & Impact</h2>
+
+<p>The XGBoost model demonstrated exceptional performance in predicting employee turnover:</p>
+
+<ul>
+    <li>Achieved 98.5% prediction accuracy with balanced precision (98.1%) and recall (93.0%)</li>
+    <li>Identified workload (number of projects), satisfaction level, and tenure as the three primary drivers of employee turnover</li>
+    <li>Discovered department-specific turnover patterns requiring targeted interventions</li>
+    <li>Developed an early warning system capable of identifying 93% of employees at risk of leaving</li>
+    <li>Created data-driven recommendations that could potentially reduce turnover costs by $1.2M annually</li>
+</ul>
+
+<div class="row">
+    <div class="column">
+        <img src="/images/turnover_confusion_matrix.png" alt="Confusion Matrix" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="/images/turnover_learning_curve.png" alt="Learning Curve" style="width:100%">
+    </div>
+</div>
+
+<div class="row">
+    <div class="column">
+        <img src="/images/turnover_roc_curve.png" alt="ROC Curve" style="width:100%">
+    </div>
+    <div class="column">
+        <img src="/images/turnover_feature_importance.png" alt="Feature Importance" style="width:100%">
+    </div>
+</div>
+
+<hr>
+
+<h2>Tools & Technologies</h2>
+
+<ul>
+    <li>Python (pandas, numpy, scikit-learn)</li>
+    <li>Machine Learning (XGBoost, Random Forest, Logistic Regression)</li>
+    <li>Data Visualization (matplotlib, seaborn)</li>
+    <li>Hyperparameter Optimization (GridSearchCV, RandomizedSearchCV)</li>
+    <li>Performance Metrics & Evaluation</li>
+</ul>
+
+<hr>
+
+<h2>Business Recommendations</h2>
+
+<p>Based on the model findings, I developed five strategic recommendations to address turnover:</p>
+
+<ol>
+    <li><strong>Workload Management Program:</strong> Establish project allocation guidelines with maximum thresholds</li>
+    <li><strong>Satisfaction Enhancement Initiative:</strong> Implement quarterly pulse surveys with concrete follow-up actions</li>
+    <li><strong>Tenure-Based Retention Strategy:</strong> Design targeted programs for employees at critical tenure milestones</li>
+    <li><strong>Performance Evaluation Reform:</strong> Revise review processes to focus on development rather than assessment</li>
+    <li><strong>Work-Life Balance Improvement:</strong> Introduce flexible scheduling options across all departments</li>
+</ol>
+
+<hr>
+
+<h2>Reflections & Lessons Learned</h2>
+
+<p>This project reinforced the importance of careful data preparation and feature engineering in building effective predictive models. The most valuable lesson was learning to balance technical sophistication with business interpretability - the most complex model isn't always the most useful if stakeholders can't understand how to act on its outputs. Additionally, I discovered that optimizing decision thresholds can significantly improve model utility for specific business objectives.</p>
+
+<hr>
+
+<h2>Implementation Plan</h2>
+
+<p>To effectively implement these recommendations, I proposed the following action plan:</p>
+
+<ol>
+    <li><strong>Deploy Early Warning System (1-2 months):</strong> Integrate the predictive model into HR systems</li>
+    <li><strong>Pilot Targeted Interventions (2-3 months):</strong> Select high-risk departments for initial implementation</li>
+    <li><strong>Scale Successful Programs (3-6 months):</strong> Evaluate pilot results and expand company-wide</li>
+    <li><strong>Enhance Data Collection (Ongoing):</strong> Identify additional data points to improve model accuracy</li>
+    <li><strong>Measure Financial Impact (6-12 months):</strong> Calculate cost savings and ROI of retention initiatives</li>
+</ol>
+
+<style>
+  .row {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .column {
+    flex: 50%;
+    padding: 5px;
+  }
+</style>

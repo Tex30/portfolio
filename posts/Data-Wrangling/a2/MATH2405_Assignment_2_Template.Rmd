@@ -1,0 +1,548 @@
+---
+title: "Data Wrangling Assessment Task 2: Creating and pre-processing synthetic data"
+author: "Michael Teixeira S4133975"
+subtitle: 
+output: 
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf: default
+---
+
+## Introduction
+
+We created two synthetic datasets: `gyg_info` and `financial_info`. These datasets were created based on the chain of restaurants called Guzman and Gomez (GYG).The data has been adjusted to generate results that are as realistic as possible.[1]
+
+The `gyg_info` dataset contains general information about each restaurant, including:
+
+* RestaurantID: A unique identifier for each restaurant.    
+* Postcode: The postal code where the restaurant is located.
+* YearFounded: The year the restaurant was established.
+* Capacity: The seating capacity of the restaurant.
+* Reviews: Customer ratings (from 3 to 5 stars).
+* DriveThru: Whether the restaurant has a drive-through service.
+* State: The Australian state where the restaurant is located.
+* NumberReviews: Number of reviews, variable correlated with YearFounded.
+
+The `financial_info` dataset contains financial data for each restaurant, including:
+
+* RestaurantID: Same as 'gyg_info' dataset, it's the common variable.
+* Revenue: The total sales for the restaurant.
+* NumberOrdersMonth: The number of orders per month.
+* AvgOrderPrice: The average price per order.
+* Expenses: The total expenses for the restaurant.
+* Profit: The difference between revenue and expenses.
+
+## Setup 
+
+Insert and load the packages you need to produce the report here:
+```{r, warning=FALSE,message=FALSE}
+# Load Packages and set seed used for this report:
+
+library(tidyverse)    # [2]  Tidyverse collection of packages. It assists with data import, tidying, manipulation,and data visualisation. For example:"dplyr", "readr", "tidyr",ggplot2, and magrittr for pipe operators.
+library(ggplot2)      # Data visualisation
+library(magrittr)     # Pipes Operators
+library(here)         # [4]  Easier file path
+library(deducorrect)  # [5]  To impute values
+library(deductive)    # [6]  Validation and error checking
+library(validate)     # [7]  Validating and checking
+library(Hmisc)        # [8]  Delete outliers
+library(openxlsx)     # [9]  For reading, writing, and manipulating Excel files
+library(outliers)     # [10] To work with outliers.
+
+# Set seed
+set.seed(2024)  # Seed number chosen for this report
+
+```
+
+
+
+## Step1
+
+### **Create the Synthetic Datasets**
+```{r}
+
+# set parameters
+nrestaurants <- 75
+
+# Synthetic Dataset 1: Guzman and Gomez restaurants info 
+gyg_info <- data.frame(
+  RestaurantID = paste0("GYG", sprintf("%03d", 1:nrestaurants)),    # paste0 to concatenate GYG with ID; sprintf to keep 3 digits in the key number. 
+  Postcode = sample(c(0:100, 800:900, 2000:8000), nrestaurants, 
+                    replace = TRUE),                                # 0:100 to create a small chance of NA value.
+  YearFounded = sample(2006:2023, nrestaurants, replace = TRUE),    # Sample of number since year first restaurant was founded in 2006.                     
+  Capacity = sample(30:100, nrestaurants, replace = TRUE),          # Random capacity inbetwenn 30 to 100.
+  Reviews = factor(round(runif(nrestaurants, 3, 5), 1)),            # Random number in between 3 to 5 with one decimal number.
+  DriveThru = sample(c(TRUE, FALSE), size = nrestaurants, 
+                     replace = TRUE, prob = c(0.3, 0.7))            # Logical vector.Added probabilities of TRUE = 30% and FALSE = 70%.
+)
+
+
+# Assign states based on postcodes
+gyg_info$state <- case_when(
+    gyg_info$Postcode >= 2000 & gyg_info$Postcode <= 2999 ~ "NSW",
+    (gyg_info$Postcode >= 2600 & gyg_info$Postcode <= 2618) | 
+    (gyg_info$Postcode >= 2900 & gyg_info$Postcode <= 2920) ~ "ACT",
+    gyg_info$Postcode >= 3000 & gyg_info$Postcode <= 3999 ~ "VIC",
+    gyg_info$Postcode >= 4000 & gyg_info$Postcode <= 4999 ~ "QLD",
+    gyg_info$Postcode >= 5000 & gyg_info$Postcode <= 5999 ~ "SA",
+    gyg_info$Postcode >= 6000 & gyg_info$Postcode <= 6999 ~ "WA",
+    gyg_info$Postcode >= 7000 & gyg_info$Postcode <= 7999 ~ "TAS",
+    gyg_info$Postcode >= 800 & gyg_info$Postcode <= 899 ~ "NT",
+    TRUE ~ NA)  # Return NA for any other postcode
+  
+
+# Correlated variable NumberReviews based on YearFounded:
+gyg_info <- gyg_info %>%
+  arrange(YearFounded) %>%
+  mutate(NumberReviews = round((2024 - YearFounded) * runif(nrestaurants, 50, 200), 0))  # Higher number of reviews for older years. We get the restaurant age, to then multiply the result for a variable number in between 50 to 200. 
+
+# Structure of Dataset 1  
+str(gyg_info)  
+
+# Add missing values
+gyg_info$Reviews[sample(1:nrestaurants, 5)] <- NA # Convert 5 random index numbers from Reviews to NA.
+
+# Add outliers to NumberReviews:
+outliers_nreviews <- sample(1:nrestaurants, 1)
+
+# Display the first few rows of the dataset
+head(gyg_info)
+
+```
+As we can see from the `str()` function, Dataset 1 contains:
+
+* 2 chr variables.    
+* 3 int variables.    
+* 1 factor variable.    
+* 1 logical variable.   
+* 1 num variable.   
+
+Total of 8 variables and 75 observations.   
+
+**We now create the Financial Information Dataset:**
+
+```{r}
+# Generate dataset 2: Financial Information
+financial_info <- data.frame(
+  RestaurantID = paste0("GYG", sprintf("%03d", 1:nrestaurants)),    # Common variable.
+  Revenue = round(rnorm(nrestaurants, mean = 400000, sd = 60000)),  # Random controlled revenue, average of 400k with standard variation of 60k.
+  AvgOrderPrice = rnorm(nrestaurants, mean = 25, sd = 5))           # Random controlled average order price of 25 with variation of 5.
+
+
+# Calculate NumberOrdersMonth:
+financial_info$NumberOrdersMonth <- round(financial_info$Revenue / financial_info$AvgOrderPrice)
+
+# Calculate Expenses (correlated variable with variation):
+financial_info$Expenses <- round(financial_info$Revenue * rnorm(75, mean = 0.8, sd = 0.05)) # 80% of Revenue on average, with 5% of variation.
+
+
+# Add missing values to NumberOrdersMonth:
+financial_info$NumberOrdersMonth[sample(1:75, 3)] <- NA
+
+# Add outliers to Revenue:
+outliers_rev <- sample(1:75, 3)
+financial_info$Revenue[outliers_rev] <- c(5253354, 2387800, 4400133)
+
+# Add outliers to AvgOrderPrice:
+outliers_avg <- sample(1:75, 1)
+financial_info$AvgOrderPrice[outliers_avg] <- c(800)
+
+# Add outliers to NumberOrdersMonth:
+outliers_nord <- sample(1:75, 2)
+financial_info$NumberOrdersMonth[outliers_nord] <- c(50, 899888)
+
+# Add outliers to Expenses:
+outliers_exp <- sample(1:75, 2)
+financial_info$Expenses[outliers_exp] <- c(1544030, 2357700)
+
+# Summary statistics for financial data:
+summary(financial_info)
+
+# Structure of Dataset 2  
+str(financial_info)
+
+# Display the first few rows of the dataset:
+head(financial_info)
+
+```
+Dataset 2 contains:
+
+* 1 chr variable.      
+* 4 num variables.       
+  
+Total of 5 variables and 75 observations.
+
+Based on an initial analysis of `summary(financial_info)`, it seems that the dataset includes outliers in the maximum values of all numeric variables, as well as in the minimum value of NumberOrdersMonth. Additionally, NumberOrdersMonth has 3 missing values (NA's).
+
+## Merge
+
+We now merge both datasets using the common variable `RestaurantID`.
+
+
+```{r}
+# Left join both datasets to combined_data using common variable:
+combined_data <- left_join(gyg_info, financial_info, by = "RestaurantID")
+
+```
+
+
+## Understand 
+
+We will ow inspect the structure of the new database combined and make modifications as needed.
+
+
+```{r}
+
+# Structure of combined_data.
+
+str(combined_data)
+
+```
+We analyse that `state` is char data type, we want to modify to a factor type. all the other variables are in a adequate data type. 
+
+
+##	Scan I 
+
+Scan for missing values in our combined dataset:
+
+
+```{r}
+# Scan the data for missing values.
+colSums(is.na(combined_data)) # Total of 9 missing values on 3 different variables.
+
+# Missing State
+# We can approach to solve this issue by requesting the info of the restaurant ID that it is missing the state or use the impute(fun=mode) if the information is not relevant for our analysis.
+
+missing_state<- which(sapply(combined_data$state, is.na)) 
+combined_data$RestaurantID[missing_state]
+
+# combined_data$state <- impute(combined_data$state, fun = mode)
+combined_data$state[missing_state] <- "WA" # We assume the correct state is WA
+
+# Handle missing values of reviews using Hmisc package
+combined_data$Reviews <- impute(combined_data$Reviews, fun = mode)    # Replacing values for mode, in this case NA replaced by 4.4.
+
+```
+
+```{r,results='hide'}
+
+# Check values that have been imputed:
+is.imputed(combined_data$Reviews)                                     # TRUE for the values that has been replaced.
+```
+
+```{r}
+# Handling missing values for NumberOrdersMonth:
+# In this case we could recalculate the missing values. We will use impute() function instead for practicing purposes.  
+ 
+combined_data$NumberOrdersMonth <- impute(combined_data$NumberOrdersMonth, fun = mean)    # Mean for NA values
+which(is.imputed(combined_data$NumberOrdersMonth))                                        # Which rows on the column has been imputed.
+
+# Scan the data for missing values.
+colSums(is.na(combined_data)) # Total of 0 missing values.
+
+```
+We can conclude that using `impute()`, can be a safe option of replacing missing values, in some situations when we are unsure that all the other values required to do calculations are correct. Also being a reduce number of missing values will unlikely affect the final results. 
+
+
+##	Scan II
+
+In this stage we will be detecting outliers using **Tukey's Method**:
+We will then remove then because we intend to make calculations.
+We will give examples of how replace them by median value or by capping them to lower fence or upper fence. 
+
+
+```{r}
+# Function to  cap outliers:
+cap <- function(x){
+  quantiles <- quantile( x, c(0.05, 0.25, 0.75, 0.95 ) , na.rm = TRUE)
+  x[ x < quantiles[2] - 1.5 * IQR(x, na.rm = TRUE) ] <- quantiles[1]
+  x[ x > quantiles[3] + 1.5 * IQR(x, na.rm = TRUE) ] <- quantiles[4]
+  x}
+```
+
+
+**combined_data$Revenue***
+
+```{r}
+# Use Tukey's Boxplot and IQR approach to detect Revenue outliers:
+combined_data$Revenue %>%  
+  boxplot(main = "Box Plot of Revenue", ylab = "Revenue", col = "lightblue")  # There are at least 3 obvious outliers.
+
+summary(combined_data$Revenue)  # Max. value is significantly higher than median.
+
+# Calculate q1 and q3 to get iqr: 
+q1 <- quantile(combined_data$Revenue, probs = 0.25)
+q3 <- quantile(combined_data$Revenue, probs = 0.75)
+iqr <- q3 - q1
+
+# Calculate lower and upper fence:
+lower_fence <- q1 - (1.5 * iqr) # Lower fence is Q1 minus the inter-quartile range.
+upper_fence <- q3 + (1.5 * iqr) # Upper fence is Q3 plus the inter-quartile range.
+
+low_outliers <- which(combined_data$Revenue < lower_fence)
+up_outliers <- which(combined_data$Revenue > upper_fence)
+
+length(low_outliers) # There are 0 outliers.
+length(up_outliers)  # There are 3 outliers. 
+
+low_outliers # no outliers.  
+up_outliers  # This gives the locations (observation numbers) of the outliers. 
+
+# All outliers together
+total_outliers <- unique(c(low_outliers, up_outliers))
+
+# Remove outliers from the data
+combined_data <- combined_data[-total_outliers, ]
+
+summary(combined_data)
+```
+
+In case we wanted to cap the outliers:
+
+combined_data$Revenue <- cap(combined_data$Revenue)    # Capping outliers
+combined_data$Revenue[up_outliers]                     # Values that has been replaced to.
+combined_data$Revenue[up_outliers]                     # This gives the values of the outliers.
+
+
+Replacing `combined_data$NumberOrdersMonth` for a median value:
+
+```{r}
+# Detect and handle outliers in NumberOrdersMonth by using cap function.
+combined_data$NumberOrdersMonth %>%
+  boxplot(main = "Box Plot of NumberOrdersMonth", ylab = "Number of Orders per Month", col = "lightblue")
+
+summary(combined_data$NumberOrdersMonth)
+
+q1 <- quantile(combined_data$NumberOrdersMonth, 0.25, na.rm = TRUE)
+q3 <- quantile(combined_data$NumberOrdersMonth, 0.75, na.rm = TRUE)
+iqr <- q3 - q1
+
+lower_fence <- q1 - 1.5 * iqr
+upper_fence <- q3 + 1.5 * iqr
+
+low_outliers <- which(combined_data$NumberOrdersMonth < lower_fence)
+up_outliers <- which(combined_data$NumberOrdersMonth > upper_fence)
+
+length(low_outliers) # There are 1 outliers.
+length(up_outliers)  # There are 4 outliers. 
+
+low_outliers # This gives the locations (observation numbers) of the outliers.  
+up_outliers  # This gives the locations (observation numbers) of the outliers. 
+
+combined_data$NumberOrdersMonth[low_outliers]  # This gives the values of the outliers. 
+combined_data$NumberOrdersMonth[up_outliers]  # This gives the values of the outliers. 
+
+# All outliers together
+total_outliers <- unique(c(low_outliers, up_outliers))
+
+# Remove outliers from the data
+combined_data <- combined_data[-total_outliers, ]
+
+summary(combined_data$NumberOrdersMonth)
+
+```
+# Replace outliers by median values instead:
+combined_data %<>% 
+   mutate(NumberOrdersMonth = case_when(NumberOrdersMonth > upper_fence ~ median(combined_data$NumberOrdersMonth), 
+                          NumberOrdersMonth < lower_fence ~ median(combined_data$NumberOrdersMonth), 
+                          TRUE ~ NumberOrdersMonth))
+
+
+
+
+**combined_data$AvgOrderPrice**:
+
+```{r}
+# Detect and handle outliers in AvgOrderPrice
+combined_data$AvgOrderPrice %>%
+  boxplot(main = "Box Plot of AvgOrderPrice", ylab = "Average Order Price", col = "lightblue")
+
+summary(combined_data$AvgOrderPrice)
+
+q1 <- quantile(combined_data$AvgOrderPrice, 0.25, na.rm = TRUE)
+q3 <- quantile(combined_data$AvgOrderPrice, 0.75, na.rm = TRUE)
+iqr <- q3 - q1
+
+lower_fence <- q1 - 1.5 * iqr
+upper_fence <- q3 + 1.5 * iqr
+
+low_outliers <- which(combined_data$AvgOrderPrice < lower_fence)
+up_outliers <- which(combined_data$AvgOrderPrice > upper_fence)
+
+length(low_outliers) # There are 1 outliers.
+length(up_outliers)  # There are 5 outliers. 
+
+low_outliers # This gives the locations (observation numbers) of the outliers.  
+up_outliers  # This gives the locations (observation numbers) of the outliers. 
+
+combined_data$AvgOrderPrice[low_outliers]  # This gives the values of the outliers. 
+combined_data$AvgOrderPrice[up_outliers]  # This gives the values of the outliers. 
+
+# All outliers together
+total_outliers <- unique(c(low_outliers, up_outliers))
+
+# Remove outliers from the data
+combined_data <- combined_data[-total_outliers, ]
+
+summary(combined_data$AvgOrderPrice)
+```
+
+**combined_data$Expenses**:
+
+```{r}
+# Detect and handle outliers in Expenses
+combined_data$Expenses %>%
+  boxplot(main = "Box Plot of Expenses", ylab = "Expenses", col = "lightblue")
+
+summary(combined_data$Expenses)
+
+q1 <- quantile(combined_data$Expenses, 0.25, na.rm = TRUE)
+q3 <- quantile(combined_data$Expenses, 0.75, na.rm = TRUE)
+iqr <- q3 - q1
+
+lower_fence <- q1 - 1.5 * iqr
+upper_fence <- q3 + 1.5 * iqr
+
+low_outliers <- which(combined_data$Expenses < lower_fence)
+up_outliers <- which(combined_data$Expenses > upper_fence)
+
+length(low_outliers) # There are 0 outliers.
+length(up_outliers)  # There are 2 outliers. 
+
+low_outliers # This gives the locations (observation numbers) of the outliers.  
+up_outliers  # This gives the locations (observation numbers) of the outliers. 
+
+combined_data$Expenses[low_outliers]  # This gives the values of the outliers. 
+combined_data$Expenses[up_outliers]  # This gives the values of the outliers.
+
+# All outliers together
+total_outliers <- unique(c(low_outliers, up_outliers))
+
+# Remove outliers from the data
+combined_data <- combined_data[-total_outliers, ]
+
+# Check the summary
+summary(combined_data$Expenses)
+
+str(combined_data)
+
+```
+We deleted total of 15 observations which allow us now to perform the following calculations.
+
+##	Manipulate Data 
+
+Now that our datasets are clean from missing values and outliers we can procede to make calculations.
+We will proceed to create a `combined_data$Profit`, `combined_data$ProfitPer` variables and convert the `combined_data$state` variable to factor.
+
+
+
+```{r}
+# Calculate Profit:
+combined_data$Profit <- combined_data$Revenue - combined_data$Expenses
+
+# Calculate Profit in percentage:
+combined_data$ProfitPer <- round(combined_data$Profit / combined_data$Expenses *100,2) 
+
+# Transform State variable to factor and create levels.
+combined_data$state <- factor(combined_data$state,
+                              levels = c("NT", "NSW", "ACT", "VIC", "QLD", "SA", "WA", "TAS"))
+
+# Structure of combined_data.                              
+str(combined_data)
+
+# Summary stats
+summary(combined_data) #  
+
+
+```
+
+If we replaced the outliers with other values, the integrity of the results could have been compromised.
+`combined_data$state` is now a factor. `combined_data$Profit` and `combined_data$ProfitPer` columns has been created.
+
+
+##	Transform 
+
+Write your plain text here.
+
+
+```{r}
+
+# log Transformation 
+
+combined_data$LogRevenue = log(combined_data$Revenue) # log Transformation of Revenue to LogRevenue
+
+```
+
+
+## Summary statistics
+
+
+```{r}
+
+# Group by state and DriveThru, and calculate multiple statistics
+grouped_summary <- combined_data %>%
+  group_by(state, DriveThru) %>%
+  summarise(
+    Mean_Profit = mean(Profit, na.rm = TRUE),
+    Median_Profit = median(Profit, na.rm = TRUE),
+    SD_Profit = sd(Profit, na.rm = TRUE),
+    Total_Revenue = sum(Revenue, na.rm = TRUE),
+    Total_Expenses = sum(Expenses, na.rm = TRUE))
+# Display the grouped summary
+head(grouped_summary)
+
+```
+
+We can analyse different values such mean of profit, Total Revenue, Total Expenses. Grouped by state and driveTru.
+
+## Save File
+
+Save in xlxs:
+```{r}
+# Create a new workbook
+wb <- createWorkbook()
+
+# Add worksheets
+addWorksheet(wb, "gyg_info")
+addWorksheet(wb, "financial_info")
+addWorksheet(wb, "combined_data")
+
+# Write data to worksheets
+writeData(wb, sheet = "gyg_info", gyg_info)
+writeData(wb, sheet = "financial_info", financial_info)
+writeData(wb, sheet = "combined_data", combined_data)
+
+# Save the workbook to a file
+saveWorkbook(wb, file = "MichaelTeixeiraS4133975.xlsx", overwrite = TRUE)
+```
+
+
+
+## References
+
+[1] Nichols N (2021) *The rise of Guzman y Gomez: The making of a global brand*, Business News Australia website, accessed 27 July 2024. https://www.businessnewsaustralia.com/articles/the-rise-of-guzman-y-gomez--the-making-of-a-global-brand.html
+
+[2] Wickham H, Averick M, Bryan J, et al. (2019) *Welcome to the tidyverse. Journal of Open Source Software*, 4(43), 1686, https://doi.org/10.21105/joss.01686
+
+[3] R Core Team (2019) *R: A language and environment for statistical computing*, R Foundation for Statistical Computing website, accessed 27 July 2024. https://www.R-project.org/
+
+[4]Wickham, H. (2021). *here: A Simpler Way to Find Your Files (Version 1.0.1)*. R package. Available at: https://CRAN.R-project.org/package=here
+
+[5]Neuhaus, J., & Cooper, M. (2020). *deducorrect: Data Deduplication and Correction (Version 1.0.0).* R package. Available at: https://CRAN.R-project.org/package=deducorrect
+
+[6]Dupont, C., & Robert, P. (2021). *deductive: Data Validation and Deduction (Version 1.2.0).* R package. Available at: https://CRAN.R-project.org/package=deductive
+
+
+[7]Berger, R., & Thiel, J. (2018). *validate: Validate Data According to a Specification (Version 1.1.0).* R package. Available at: https://CRAN.R-project.org/package=validate
+
+
+[8]Harrell, F. E. (2023). *Hmisc: Harrell Miscellaneous (Version 4.7.0). R package.* Available at: https://CRAN.R-project.org/package=Hmisc
+
+[9]Walker, S. (2021). openxlsx: Read, Write and Edit Excel xlsx Files (Version 4.2.5). R package. Available at: https://CRAN.R-project.org/package=openxlsx
+
+[10]Iglewicz, B., & Hoaglin, D. C. (1993). How to Detect and Handle Outliers. Wiley Series in Probability and Statistics. Available at: https://CRAN.R-project.org/package=outliers
+
+
+<br>
+<br>
