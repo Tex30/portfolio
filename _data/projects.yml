@@ -1,0 +1,52 @@
+# Project information
+- id: employee-turnover
+  title: Employee Turnover Prediction
+  subtitle: Advanced Analytics & Machine Learning Solution
+  thumbnail: /assets/images/projects/employee-turnover.jpg
+  github: https://github.com/Tex30/employee-turnover-prediction
+  featured: true
+  technologies:
+    - Python
+    - XGBoost
+    - scikit-learn
+    - pandas
+  categories:
+    - Machine Learning
+    - Predictive Analytics
+    - HR Analytics
+  metrics:
+    - label: Accuracy
+      value: 98.5%
+    - label: F1 Score
+      value: 95.1%
+    - label: Potential Savings
+      value: $1.2M
+  summary: >
+    Developed a comprehensive employee turnover solution using the PACE methodology
+    to transform HR data into actionable intelligence, with a high-accuracy XGBoost
+    model identifying key attrition drivers.
+
+- id: cyclistic-bikeshare
+  title: Cyclistic Bike-Share User Behavior Analysis
+  subtitle: Converting Casual Riders to Annual Members
+  thumbnail: /assets/images/projects/cyclistic.jpg
+  article: https://www.linkedin.com/pulse/cyclistic-capstone-case-study-michael-teixeira-pn8wc/
+  dashboard: https://public.tableau.com/app/profile/michael.teixeira/vizzes
+  featured: true
+  technologies:
+    - R
+    - Tableau
+    - Data Analysis
+  categories:
+    - Data Visualization
+    - Business Analytics
+    - Customer Behavior
+  metrics:
+    - label: Data Span
+      value: 12 Months
+    - label: Strategy
+      value: User Conversion
+  summary: >
+    Analyzed Cyclistic bike-share data to identify behavioral differences between casual
+    and annual riders, developing strategies to convert casual riders into long-term members
+    for improved retention and profitability.

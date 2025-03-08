@@ -1,0 +1,292 @@
+---
+title: "MATH2405 TP4, 2024"
+author: "Michael Teixeira S4133975"
+subtitle: Assignment 1
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf: default
+---
+  
+<div align="center">
+# **Staff salary and wages budget 2014-18**
+</div>
+
+### **Introduction**    
+
+
+In this report, we will work with a database provided by the **City of Melbourne Council**[1]. It contains staff salary and wages plan and budget for the financial years 2014 to 2018.
+
+
+
+
+
+### **Setup**
+
+
+This chunk is where we load the packages required for producing the report, if not previously installed we need to install them individually by using the function: `install.packages("name_of_package")` and load it by using `library(name_of_package)`
+
+```{r, echo = TRUE, warnings = FALSE}
+
+# The following packages was used to build this report: 
+
+# [2] Tidyverse collection of packages. It assists with data import, tidying,
+#     manipulation, and data visualisation. For example:"dplyr", "readr", "tidyr",
+#     and magrittr for pipe operators.
+library(tidyverse) 
+
+library(magrittr) # Package from tidyverse for pipe operators.
+
+```
+
+
+
+### **Data Description**
+
+
+This dataset shows the summary of planned Human Resources expenditure across permanent and temporary council staff. It also includes a breakdown of expenditure and number of staff for each category across the organisation's structure.
+
+It contains 6 variables:
+  
+* As at Date - The date when this financial record was calculated.    
+* Year
+* Actual/Budget/Plan - A category value to indicate if the figure represents actual, budgeted or planned values.    
+* Category - Organisational branch for this financial measure.
+* Description - Category value (one of: Permanent full time, Permanent part time, Total casuals and other) representing the contractual arrangement for each category.    
+* Value ($,000) - The value in dollars (AUD).   
+
+### **Import Data**
+
+The file was downloaded from the source[1] in *.csv* file format to our local disk and a copy was made with the name from *“staff-salary-and-wages-budget-2014-15-2”* to *“Assigment1”*. Now we will be importing to Rstudio.
+
+
+```{r,echo=TRUE} 
+
+# Load file into a variable df, using read.csv.  
+
+df <- read.csv("Assigment1.csv", sep=";") # Data separated by semicolon
+
+
+```
+
+
+
+### **Inspect dataset and variables**
+
+
+With the following functions we can analyse part of the data frame, identify the structure of the data, which contains 52 rows and 6 columns, and get statistics numbers that can help us to get to know better the data, as well identify possible outliers.
+
+
+
+**Inspecting the structure of the df:**
+
+```{r}
+ 
+
+
+head(df) # First 6 rows, analyse of relevant variables and their types.
+str(df) # Structure of data, 52 observations and 6 variables. Five char variables and one numeric.
+summary(df) # Statistics numbers, detecting possible outliers.
+
+```
+
+**Identifying possible data entry errors, misspellings:**
+
+
+```{r,echo=TRUE}
+
+# unique function to check how many unique values each column contain.
+unique(df$year)
+unique(df$actual_budget_plan)
+unique(df$category)
+unique(df$description)
+
+
+```
+
+
+
+### **Tidy data** 
+
+
+Previously, with the `unique()` function, we checked that there were no misspellings in the data, but we noticed that the variables were in the wrong type of data and the names of the columns could be clearer. At this stage, we proceed with tidying the data.
+
+```{r}
+# Changing name of variables for a clear description:
+df %<>% 
+  rename("date_calc" = "as_at_date","financial_year" = "year", 
+         "contract_type" = "description", "value_aud" = "value_000")
+
+# Updating data type format of variables:
+df$date_calc <- as.Date(df$date_calc)
+
+# Created a order for the factor year
+df$financial_year <- factor(c("2014-15","2015-16","2016-17","2017-18"),
+                  levels = c("2014-15","2015-16","2016-17","2017-18"))   
+levels(df$financial_year)
+
+df$actual_budget_plan <- as.factor(df$actual_budget_plan)
+
+df$category <- as.factor(df$category)
+
+df$contract_type <- as.factor(df$contract_type)
+
+class(df$value_aud)  # value_aud is already numeric type
+
+
+
+```
+```{r, results='hide'}
+# Checking for duplicates.
+
+duplicated(df) # All results return FALSE, so no duplicated values.
+
+```
+
+
+### **Summary Statistics**
+
+The data has been cleaned, we are now ready to get statistics from the values.
+
+
+
+**We start by getting the stats of values that have been used in each financial year, in each category:**
+
+```{r}
+
+# Statistics values grouped first by financial year and then by category, 
+# and assigned to value_stats variable.
+
+value_stats <- df %>% 
+  group_by(financial_year, category) %>%
+    summarise(Min_value = min(value_aud, na.rm = TRUE), 
+            Q1_value = quantile(value_aud, probs = 0.25, na.rm = TRUE), 
+            Median_value = median(value_aud, na.rm = TRUE), 
+            Q3_value = quantile(value_aud, probs = 0.75, na.rm = TRUE), 
+            Max_value = max(value_aud, na.rm = TRUE), 
+            Mean_value = mean(value_aud, na.rm = TRUE), 
+            SD_value = sd(value_aud, na.rm = TRUE),
+            Total_value = sum(value_aud),
+            Missing_values = sum(is.na(value_aud)),
+            n_reports = n())  # Total number of observations. 
+head(value_stats)
+```
+
+**We now analyse yearly values of overall category, by group the data by financial year:**
+
+```{r}
+# Values grouped by financial year to compare costs in different financial years.
+
+value_stats_year <- df %>% 
+  group_by(financial_year) %>%
+    summarise(Min_value = min(value_aud, na.rm = TRUE), 
+            Q1_value = quantile(value_aud, probs = 0.25, na.rm = TRUE), 
+            Median_value = median(value_aud, na.rm = TRUE), 
+            Q3_value = quantile(value_aud, probs = 0.75, na.rm = TRUE), 
+            Max_value = max(value_aud, na.rm = TRUE), 
+            Mean_value = mean(value_aud, na.rm = TRUE), 
+            SD_value = sd(value_aud, na.rm = TRUE),
+            Total_value = sum(value_aud),
+            Missing_values = sum(is.na(value_aud)),
+            n_reports = n())  # Total number of observations. 
+head(value_stats_year)
+
+```
+
+
+**Next we will try to understand how the money has been distributed by category: **
+```{r}
+# Comparing costs from different categories in total over the four financial years.
+
+value_stats_cat <- df %>% 
+  group_by(category) %>%
+    summarise(Min_value = min(value_aud, na.rm = TRUE), 
+            Q1_value = quantile(value_aud, probs = 0.25, na.rm = TRUE), 
+            Median_value = median(value_aud, na.rm = TRUE), 
+            Q3_value = quantile(value_aud, probs = 0.75, na.rm = TRUE), 
+            Max_value = max(value_aud, na.rm = TRUE), 
+            Mean_value = mean(value_aud, na.rm = TRUE), 
+            SD_value = sd(value_aud, na.rm = TRUE),
+            Total_value = sum(value_aud),
+            Missing_values = sum(is.na(value_aud)),
+            n_reports = n())  # Total number of observations. 
+head(value_stats_cat)
+
+```
+
+We can come to the conclusion that, depending on our business task goal, grouping the data according to different variables can offer different perspectives on the data.
+
+
+### **Create a list**
+
+Creating a list with values number that each will represent each level of the category variable. Levels from category factor associated and labels created as 1 to 7.
+
+```{r}
+
+# Created a list that contains a numeric value for each response to the category variable.
+str(df$category)                            # 7 levels.
+  
+
+category_list = factor(df$category, labels = c(1:7))
+
+str(category_list)
+
+```
+
+On the previous code chunk, a vector has been created with the same levels of `category`, and assigned labels from 1 to 7 represented by the default levels order that R attributives in alphabetical order.
+
+### **Join the list**
+
+`category_list` added as a new column to `df` as "category_n".
+
+
+```{r}
+
+
+df$category_n <- category_list # New column added to df.
+
+```
+
+
+
+### **Subsetting (10 observations)**
+
+On this chunk, we subset the ten first rows of the data frame with all columns and then we convert it to a matrix.
+
+```{r}
+
+# Subset the data and convert it to a matrix.
+
+df_subset<- df[1:10, ]          # Subset-ting data frame using square brackets.
+df_matrix <- matrix(df_subset)  # Data frame converted to matrix.
+is.matrix(df_matrix)            # Checking if conversion was completed.
+str(df_matrix)                  # Structure of the matrix.
+
+```
+Function `matrix()` assigned numeric values to all of the factor type of data. Changed the table to wide containing now 7 lists with 10 observations each. This is because the length and the size of the matrix needs to be equal. 
+
+
+### **Subsetting (first and last variable)**
+
+Extracting first and last variables of the `df` and then save data as RData format:
+
+
+```{r}
+
+# Subset your data and saving it to an R object file 
+df_subset2 <- df[ ,c(1, 7)]                  # Sub-setting all rows of the first and last column.
+head(df_subset2)                             # Checking result.
+save(df_subset2, file = "DfSubset2.RData")   # Saving file in RData format, in working directory.
+
+```
+
+### **Reference**   
+[1] City of Melbourne (2015) *Staff salary and wages budget 2014-15*, melbourne.vic.gov.au website, accessed 14 July 2024.    
+https://data.gov.au/dataset/ds-melbourne-staff-salary-and-wages-budget-2014-15/details?q=salaries  
+
+[2] Wickham et al., (2019). *Welcome to the tidyverse.* Journal of Open Source Software, 4(43), 1686, https://doi.org/10.21105/joss.01686
+    
+[3] R Core Team (2019). *R: A language and environment for statistical computing.* R Foundation for Statistical Computing, Vienna, Austria.
+URL https://www.R-project.org/.

@@ -1,0 +1,160 @@
+// Print styles
+
+@media print {
+  // Hide elements not needed for print
+  .sidebar, 
+  #mobile-nav-toggle, 
+  .theme-switch-wrapper, 
+  .sidebar-search,
+  .sidebar-keyboard-help,
+  #scroll-to-top,
+  .nav-links,
+  .github-link,
+  .back-to-portfolio,
+  .filter-container,
+  .project-links {
+    display: none !important;
+  }
+  
+  // Reset page margins
+  @page {
+    margin: 1cm;
+  }
+  
+  // Base styles
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    background: white;
+    color: black;
+  }
+  
+  .main-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: none;
+  }
+  
+  // Make links show their URL
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+    color: #666;
+  }
+  
+  // But not for navigation or buttons
+  a[href^="#"]:after,
+  a[href^="javascript:"]:after,
+  a.btn:after {
+    content: "";
+  }
+  
+  // Force page breaks
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  img {
+    page-break-inside: avoid;
+    max-width: 100% !important;
+  }
+  
+  // Avoid breaking inside elements
+  .skill-card,
+  .project-card,
+  .approach-card,
+  .recommendation-card,
+  .timeline-item,
+  blockquote,
+  pre,
+  table {
+    page-break-inside: avoid;
+  }
+  
+  // Force specific page breaks
+  .new-page-for-print {
+    page-break-before: always;
+  }
+  
+  // Show collapsed content
+  .collapsible-content {
+    max-height: none !important;
+    display: block !important;
+  }
+  
+  // Remove backgrounds and add borders instead
+  .exec-summary,
+  .banner-container,
+  .approach-card,
+  .recommendation-card,
+  .metric-card {
+    background: none !important;
+    color: black !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .exec-summary .summary-card {
+    background: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .exec-summary .summary-card h4 {
+    color: black !important;
+  }
+  
+  // Ensure tables are readable
+  table, th, td {
+    border: 1px solid #ddd !important;
+  }
+  
+  th {
+    background-color: #f0f0f0 !important;
+    color: black !important;
+  }
+  
+  // Adjust header for printing
+  .profile-header {
+    display: block;
+    
+    .profile-image {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+    
+    .profile-title {
+      font-size: 24pt;
+    }
+    
+    .profile-subtitle {
+      font-size: 16pt;
+    }
+  }
+  
+  // Make sure skill bars are visible
+  .skill-level-bar {
+    border: 1px solid #ccc;
+  }
+  
+  // Expand grid items to full width
+  .skills-container,
+  .projects-grid,
+  .recommendation-cards,
+  .approach-section {
+    display: block !important;
+    
+    & > * {
+      width: 100% !important;
+      margin-bottom: 20px !important;
+    }
+  }
+  
+  // Add page numbers
+  @page {
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+    }
+  }
+}

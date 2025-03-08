@@ -1,0 +1,240 @@
+// Responsive styles
+
+// Small devices (landscape phones)
+@media (max-width: $breakpoint-sm) {
+  html {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+  }
+  
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+  }
+  
+  .sidebar-avatar {
+    width: 40px;
+    height: 40px;
+    margin: 0 var(--spacing-sm) 0 0;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+    margin-right: 0;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .contact-links {
+    justify-content: center;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .approach-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .visualization-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .recommendation-cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-item {
+    flex-direction: column;
+  }
+  
+  .timeline-marker {
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .timeline-content {
+    padding-left: var(--spacing-xl);
+  }
+  
+  .banner-container {
+    height: 180px;
+  }
+  
+  .model-flow {
+    display: none;
+  }
+  
+  .education-courses {
+    grid-template-columns: 1fr;
+  }
+  
+  .code-example pre {
+    font-size: 0.8rem;
+  }
+  
+  .search-results {
+    margin-top: var(--spacing-md);
+  }
+  
+  .shortcuts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets)
+@media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md) {
+  .main-content {
+    margin-left: 0;
+    padding: var(--spacing-md);
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .education-courses {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .visualization-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Large devices (desktops)
+@media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+  .main-content {
+    margin-left: var(--sidebar-width);
+    padding: var(--spacing-lg);
+  }
+}
+
+// Print styles
+@media print {
+  .sidebar,
+  #mobile-nav-toggle,
+  .theme-switch-wrapper,
+  .sidebar-search,
+  .sidebar-keyboard-help,
+  #scroll-to-top,
+  .nav-links,
+  .github-link,
+  .back-to-portfolio {
+    display: none !important;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 0;
+    width: 100%;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000;
+    background: #fff;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  
+  img, table, figure {
+    page-break-inside: avoid;
+    max-width: 100% !important;
+  }
+  
+  .project-card,
+  .approach-card,
+  .summary-card,
+  .recommendation-card,
+  .pace-step {
+    page-break-inside: avoid;
+  }
+  
+  .collapsible-content {
+    max-height: none !important;
+    display: block !important;
+  }
+  
+  .exec-summary,
+  .banner-container {
+    background: none !important;
+    color: #000 !important;
+    border: 1px solid #ccc;
+  }
+  
+  .exec-summary .summary-card {
+    background: none !important;
+    border: 1px solid #ccc;
+  }
+  
+  .exec-summary .summary-card h4 {
+    color: #000 !important;
+  }
+}

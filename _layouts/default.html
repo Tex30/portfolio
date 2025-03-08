@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% include head.html %}
+  <body class="{% if page.body_class %}{{ page.body_class }}{% endif %}">
+    {% include sidebar.html %}
+    
+    <div class="main-content">
+      {{ content }}
+      
+      {% include footer.html %}
+    </div>
+    
+    {% include scroll-to-top.html %}
+    {% include keyboard-help.html %}
+    
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/dark-mode.js' | relative_url }}"></script>
+    
+    {% if page.url contains '/skills/' %}
+    <script src="{{ '/assets/js/skills-chart.js' | relative_url }}"></script>
+    {% endif %}
+    
+    {% if page.url contains '/contact/' %}
+    <script src="{{ '/assets/js/form-validation.js' | relative_url }}"></script>
+    {% endif %}
+  </body>
+</html>

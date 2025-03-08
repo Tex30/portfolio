@@ -1,0 +1,11 @@
+<div class="project-card" data-categories="{{ include.project.categories | join: ',' }}">
+  {% if include.project.thumbnail %}
+    <img src="{{ include.project.thumbnail | relative_url }}" alt="{{ include.project.title }}" class="project-image" 
+         onerror="this.src='https://via.placeholder.com/400x200?text={{ include.project.title | url_encode }}'">
+  {% endif %}
+  
+  <div class="project-content">
+    <h3 class="project-title">{{ include.project.title }}</h3>
+    
+    <div class="project-tech">
+      {% for tech in include.

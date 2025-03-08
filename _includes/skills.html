@@ -1,0 +1,18 @@
+<div class="skills-container">
+  {% for skill_category in site.data.skills %}
+  <div class="skill-card">
+    <h4>{{ skill_category.category }}</h4>
+    {% for skill in skill_category.skills %}
+    <div class="skill-item" data-skill="{{ skill.name | slugify }}">
+      <span class="skill-name">{{ skill.name }}</span>
+      <div class="skill-level">
+        <div class="skill-level-bar" style="width: {{ skill.level }}%;"></div>
+      </div>
+      <div class="skill-tooltip">
+        <p>{{ skill.description }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+</div>

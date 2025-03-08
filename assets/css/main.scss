@@ -1,0 +1,20 @@
+---
+# Front matter needed for Jekyll processing
+---
+
+// Import variables first
+@import "variables";
+
+// Import all other styles
+@import "base";
+@import "layout";
+@import "sidebar";
+@import "projects";
+@import "blog";
+@import "search";
+@import "contact";
+@import "skills";
+@import "responsive";
+
+// Print styles
+@import "print";

@@ -1,0 +1,76 @@
+# Skills with categories and proficiency levels
+- category: Programming & Languages
+  skills:
+    - name: Python
+      level: 95
+      description: Advanced data analysis, machine learning, and automation
+      icon: python
+    - name: R
+      level: 85
+      description: Statistical analysis and visualization
+      icon: r-project
+    - name: SQL
+      level: 90
+      description: Complex queries, database design, and optimization
+      icon: database
+    - name: HTML/CSS
+      level: 75
+      description: Web development and data visualization
+      icon: code
+
+- category: Machine Learning
+  skills:
+    - name: Supervised Learning
+      level: 95
+      description: Classification, regression, ensemble methods
+      icon: robot
+    - name: XGBoost/Random Forest
+      level: 90
+      description: Advanced tree-based models for prediction
+      icon: tree
+    - name: Feature Engineering
+      level: 85
+      description: Creating meaningful variables from raw data
+      icon: tools
+    - name: Model Evaluation
+      level: 90
+      description: Metrics analysis, cross-validation, hyperparameter tuning
+      icon: chart-line
+
+- category: Data Visualization
+  skills:
+    - name: Tableau
+      level: 90
+      description: Interactive dashboards and business intelligence
+      icon: chart-bar
+    - name: Matplotlib/Seaborn
+      level: 85
+      description: Custom Python visualizations
+      icon: chart-pie
+    - name: ggplot2
+      level: 80
+      description: Statistical visualization in R
+      icon: chart-area
+    - name: Shiny Apps
+      level: 75
+      description: Interactive web applications with R
+      icon: desktop
+
+- category: Tools & Platforms
+  skills:
+    - name: Git/GitHub
+      level: 85
+      description: Version control and collaboration
+      icon: git-alt
+    - name: Jupyter Notebook
+      level: 95
+      description: Data analysis and documentation
+      icon: book
+    - name: RStudio
+      level: 85
+      description: R development environment
+      icon: r-project
+    - name: SQL Databases
+      level: 80
+      description: PostgreSQL, MySQL, SQLite
+      icon: database

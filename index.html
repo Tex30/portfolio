@@ -1,0 +1,144 @@
+---
+layout: home
+title: Michael Teixeira - Data Scientist
+---
+
+<!-- Header Section -->
+<div class="profile-header">
+    <img src="{{ '/assets/images/profile-photo.jpg' | relative_url }}" alt="Michael Teixeira" class="profile-image" onerror="this.src='https://via.placeholder.com/150?text=MT'">
+    <div class="profile-info">
+        <h1 class="profile-title">Michael Teixeira</h1>
+        <h3 class="profile-subtitle">Data Scientist & Analytics Professional</h3>
+        <p>Transforming complex data into actionable business insights through advanced analytics, machine learning, and compelling data storytelling. Specialized in predictive modeling for business optimization and retention strategies.</p>
+        <div class="contact-links">
+            {% for link in site.data.social %}
+            <a href="{{ link.url }}" target="_blank">
+                <i class="fab fa-{{ link.icon }}"></i> {{ link.name }}
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Skills Section -->
+<h2 id="skills">Skills & Expertise</h2>
+{% include skills.html %}
+
+<!-- Education Section -->
+<h2 id="education">Education</h2>
+<ul>
+    <li>Graduate Certificate in Data Science | RMIT, Melbourne, Australia (<em>Feb 2025</em>)</li>
+    <li>Certificate IV in IT | Escola Secundaria de Vouzela (<em>Jun 2013</em>)</li>
+</ul>
+
+<!-- Featured Projects Section -->
+<h2 id="projects">Featured Projects</h2>
+
+<div id="project-filters" class="filter-container">
+  <!-- Filter buttons will be added here by JavaScript -->
+</div>
+
+<div class="projects-grid">
+  {% for project in site.data.projects %}
+    {% include project-card.html project=project %}
+  {% endfor %}
+</div>
+
+<!-- Educational Projects Section -->
+<h2>Educational Projects</h2>
+<div class="education-toggle">
+    <span>Graduate Certificate in Data Science Coursework</span>
+    <span class="toggle-icon">▼</span>
+</div>
+<div class="education-content">
+    <p><a href="https://github.com/Tex30/Graduate-Certificate-in-Data-Science/" target="_blank">
+        <img src="https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub" alt="View on GitHub">
+    </a></p>
+    
+    <p>Completed as part of the <a href="https://studyonline.rmit.edu.au/online-programs/graduate-certificate-data-science" target="_blank"><strong>GC173KP19 - Graduate Certificate in Data Science</strong></a> by RMIT.</p>
+    
+    <div class="education-courses">
+        <div class="course-card">
+            <h4>Data Wrangling</h4>
+            <ul>
+                <li>Pre-processing data project: <a href="posts/Data-Wrangling/a1/MichaelTeixeiraAssignment1.html">code</a> | <a href="posts/Data-Wrangling/a1/MichaelTeixeiraS4133975.pdf">handout</a></li>
+                <li>Coding exercises: <a href="posts/Data-Wrangling/a2/MATH2405_Assignment_2.html">code</a> | <a href="posts/Data-Wrangling/a2/MichaelTeixeiraS4133975.pdf">handout</a></li>
+                <li>Applied relational data project: 
+                    <a href="posts/Data-Wrangling/a3/MATH2405_Assignment.html">code</a> | 
+                    <a href="posts/Data-Wrangling/a3/Michael%20Teixeira%20S4133975.pdf">handout</a> | 
+                    <a href="https://www.loom.com/share/09e8b3ec0782438ebd5ba8afc8db0248?sid=764b1c4c-f4a2-473d-9a54-faf9d25f6109">presentation</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="course-card">
+            <h4>Practical Data Science with Python</h4>
+            <ul>
+                <li>Dataset preparation report: 
+                    <a href="posts/Practical-Data-Science-with-Python/a1/assignment1.html">code</a> | 
+                    <a href="posts/Practical-Data-Science-with-Python/a1/report.pdf">handout</a>
+                </li>
+                <li>Data modelling report: 
+                    <a href="posts/Practical-Data-Science-with-Python/a2/Assignment2.html">code</a> | 
+                    <a href="posts/Practical-Data-Science-with-Python/a2/report.pdf">handout</a>
+                </li>
+                <li>Data modelling presentation: 
+                    <a href="posts/Practical-Data-Science-with-Python/a3/assignment3.html">code</a> | 
+                    <a href="https://drive.google.com/file/d/1pmHBuRym4nhtFVxYzLTfmvdDq8zkCqIL/view?usp=drive_link">presentation</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="course-card">
+            <h4>Data Visualisation and Communication</h4>
+            <ul>
+                <li>Data visualisation storytelling: 
+                    <a href="posts/Data-Visualisation-and-Communication/a1/MichaelTeixeiraS4133975.pdf">pdf</a> | 
+                    <a href="https://drive.google.com/file/d/1sV4HnTZZuOLH7iUa-pUywestMwNcryX0/view?usp=drive_link">vodcast</a>
+                </li>
+                <li>Data visualisation critique: 
+                    <a href="posts/Data-Visualisation-and-Communication/a2/Assignment2.html">code</a> | 
+                    <a href="posts/Data-Visualisation-and-Communication/a2/MichaelTeixeiraS4133975.pdf">handout</a>
+                </li>
+                <li>Storytelling with open data: 
+                    <a href="https://ju12ki-michael-teixeira.shinyapps.io/Assignment3/#section-overview">Dashboard</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="cta-section home-cta">
+    <h2>Let's Work Together</h2>
+    <p>Looking for a data scientist to help extract insights from your data or build a predictive model for your business?</p>
+    <div class="cta-buttons">
+        <a href="{{ '/pages/contact/' | relative_url }}" class="btn">Contact Me</a>
+        <a href="{{ '/assets/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" target="_blank">Download Resume</a>
+    </div>
+</div>
+
+<!-- JavaScript to handle the education toggle -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.querySelector('.education-toggle');
+        const content = document.querySelector('.education-content');
+        const toggleIcon = document.querySelector('.toggle-icon');
+        
+        // Initialize as collapsed
+        content.style.display = 'none';
+        
+        toggleBtn.addEventListener('click', function() {
+            if (content.style.display === 'none') {
+                content.style.display = 'block';
+                toggleIcon.textContent = '▼';
+            } else {
+                content.style.display = 'none';
+                toggleIcon.textContent = '►';
+            }
+        });
+    });
+</script>
+
+<!-- Project filter script -->
+<script src="{{ '/assets/js/project-filter.js' | relative_url }}"></script>

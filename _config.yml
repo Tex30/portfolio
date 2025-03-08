@@ -1,0 +1,64 @@
+# Site settings
+title: Michael Teixeira - Data Scientist
+email: your.email@example.com
+description: >-
+  Data Scientist specializing in predictive modeling and machine learning solutions.
+  Transforming complex data into actionable insights.
+baseurl: "/portfolio"
+url: "https://tex30.github.io/"
+github_username: Tex30
+linkedin_username: michael-teixeira
+
+# Author information
+author:
+  name: Michael Teixeira
+  bio: Data Scientist with expertise in predictive modeling, machine learning, and data visualization.
+  location: Melbourne, Australia
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+highlighter: rouge
+
+# Collections for projects
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Default front matter for different types of content
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "pages"
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Pagination for blog posts
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - README.md

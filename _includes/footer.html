@@ -1,0 +1,21 @@
+<footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <p class="copyright">&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}. All rights reserved.</p>
+      </div>
+      
+      <div class="footer-section">
+        <div class="social-links">
+          {% for link in site.data.social %}
+            <a href="{{ link.url }}" target="_blank" title="{{ link.name }}">
+              <i class="fab fa-{{ link.icon }}"></i>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <p class="powered-by">Built with <a href="https://jekyllrb.com" target="_blank">Jekyll</a></p>
+      </div>
+    </div>
+  </footer>
