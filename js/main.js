@@ -199,9 +199,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // -------------- Make project card images clickable to their project page --------------
+    // This handles the project cards on the home page
+    const projectCardImages = document.querySelectorAll('.project-card .project-image img');
+    
+    projectCardImages.forEach(img => {
+        // Find the parent project card
+        const projectCard = img.closest('.project-card');
+        
+        if (projectCard) {
+            // Find the "View Project" link in this card
+            const viewProjectLink = projectCard.querySelector('.project-links a:first-child');
+            
+            if (viewProjectLink) {
+                const projectUrl = viewProjectLink.getAttribute('href');
+                
+                // Make the image clickable to the same URL
+                img.style.cursor = 'pointer';
+                img.title = "Click to view project details";
+                
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    console.log('Project image clicked, navigating to:', projectUrl);
+                    window.location.href = projectUrl;
+                });
+            }
+        }
+    });
+    
     // -------------- Image lightbox functionality --------------
     // Select all images that should have lightbox functionality
-    const lightboxImages = document.querySelectorAll('.project-image-container img, .project-image img, .project-section img');
+    // Exclude project card images which we've already handled above
+    const lightboxImages = document.querySelectorAll('.project-image-container img, .project-section img');
     
     if (lightboxImages.length > 0) {
         console.log(`Lightbox initialized for ${lightboxImages.length} images`);
@@ -225,6 +256,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add click event to each image
         lightboxImages.forEach(img => {
+            // Skip if this image is already part of a project card
+            if (img.closest('.project-card')) {
+                return;
+            }
+            
             img.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
