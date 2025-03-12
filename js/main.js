@@ -18,27 +18,42 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile menu toggle
     if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function() {
+        console.log('Hamburger and navLinks elements found');
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default behavior
+            e.stopPropagation(); // Stop propagation to prevent immediate closing
+            console.log('Hamburger clicked');
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
-            console.log('Hamburger clicked, menu toggled');
+            console.log('Menu toggled. Active:', navLinks.classList.contains('active'));
         });
+    } else {
+        console.error('Hamburger or navLinks elements not found');
+        console.log('hamburger:', hamburger);
+        console.log('navLinks:', navLinks);
     }
     
     // Close mobile menu when clicking on a link
     const navItems = document.querySelectorAll('.nav-links a');
     navItems.forEach(item => {
         item.addEventListener('click', function() {
-            hamburger.classList.remove('active');
-            navLinks.classList.remove('active');
+            if (hamburger && navLinks) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+                console.log('Menu closed by nav item click');
+            }
         });
     });
     
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (!navLinks.contains(event.target) && !hamburger.contains(event.target) && navLinks.classList.contains('active')) {
+        if (hamburger && navLinks && 
+            !navLinks.contains(event.target) && 
+            !hamburger.contains(event.target) && 
+            navLinks.classList.contains('active')) {
             hamburger.classList.remove('active');
             navLinks.classList.remove('active');
+            console.log('Menu closed by outside click');
         }
     });
     
@@ -84,17 +99,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please fill out all fields');
                 e.preventDefault();
                 return;
-        }
+            }
         
             if (!isValidEmail(email)) {
                 alert('Please enter a valid email address');
                 e.preventDefault();
                 return;
-             }
+            }
         
-        // Form will submit to Formspree if validation passes
-    });
-}
+            // Form will submit to Formspree if validation passes
+        });
+    }
     
     // Email validation helper function
     function isValidEmail(email) {
@@ -184,77 +199,100 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // -------------- Image lightbox functionality (optional) --------------
-    // Only initialize if there are images that should have lightbox functionality
-    const lightboxImages = document.querySelectorAll('.project-image-container img');
+    // -------------- Image lightbox functionality --------------
+    // Select all images that should have lightbox functionality
+    const lightboxImages = document.querySelectorAll('.project-image-container img, .project-image img, .project-section img');
     
     if (lightboxImages.length > 0) {
-        lightboxImages.forEach(img => {
-            img.addEventListener('click', function() {
-                // Create lightbox container
-                const lightbox = document.createElement('div');
-// Simplified lightbox that won't freeze
-if (lightboxImages.length > 0) {
-    lightboxImages.forEach(img => {
-        img.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event bubbling
-            
-            // Get caption if it exists
-            let caption = '';
-            if (this.nextElementSibling && this.nextElementSibling.classList.contains('image-caption')) {
-                caption = this.nextElementSibling.textContent;
-            }
-            
-            // Create lightbox
-            const lightbox = document.createElement('div');
-            lightbox.className = 'lightbox';
-            lightbox.innerHTML = `
-                <div class="lightbox-content">
-                    <span class="lightbox-close">&times;</span>
-                    <img src="${this.src}" alt="${this.alt}">
-                    <div class="lightbox-caption">${caption}</div>
-                </div>
-            `;
-            
-            document.body.appendChild(lightbox);
-            document.body.style.overflow = 'hidden';
-            
-            // Close button functionality
-            const closeBtn = lightbox.querySelector('.lightbox-close');
-            closeBtn.addEventListener('click', function() {
-                document.body.removeChild(lightbox);
-                document.body.style.overflow = '';
-            });
-            
-            // Close on background click
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    document.body.removeChild(lightbox);
-                    document.body.style.overflow = '';
-                }
-            });
-        });
+        console.log(`Lightbox initialized for ${lightboxImages.length} images`);
         
-        img.style.cursor = 'pointer';
-    });
-    
-    // Handle escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const lightbox = document.querySelector('.lightbox');
-            if (lightbox) {
-                document.body.removeChild(lightbox);
-                document.body.style.overflow = '';
-            }
-        }
-    });
-}
-                    }
-                });
+        // Create lightbox element once and append to body (we'll reuse it)
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.innerHTML = `
+            <div class="lightbox-content">
+                <span class="lightbox-close">&times;</span>
+                <img src="" alt="">
+                <div class="lightbox-caption"></div>
+            </div>
+        `;
+        document.body.appendChild(lightbox);
+        
+        // Reference elements we'll need to update
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        const lightboxClose = lightbox.querySelector('.lightbox-close');
+        
+        // Add click event to each image
+        lightboxImages.forEach(img => {
+            img.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Get caption if it exists
+                let caption = '';
+                if (this.nextElementSibling && this.nextElementSibling.classList.contains('image-caption')) {
+                    caption = this.nextElementSibling.textContent;
+                }
+                
+                // Update lightbox content
+                lightboxImg.src = this.src;
+                lightboxImg.alt = this.alt;
+                lightboxCaption.textContent = caption;
+                
+                // Show lightbox
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                
+                console.log('Lightbox opened for image:', this.src);
             });
             
             // Add cursor pointer to show images are clickable
             img.style.cursor = 'pointer';
+        });
+        
+        // Close lightbox when clicking close button
+        lightboxClose.addEventListener('click', function(e) {
+            e.stopPropagation();
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            
+            // Clear src after transition to prevent memory issues
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+            
+            console.log('Lightbox closed');
+        });
+        
+        // Close lightbox when clicking background
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Clear src after transition to prevent memory issues
+                setTimeout(() => {
+                    lightboxImg.src = '';
+                }, 300);
+                
+                console.log('Lightbox closed by background click');
+            }
+        });
+        
+        // Handle escape key to close lightbox
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Clear src after transition to prevent memory issues
+                setTimeout(() => {
+                    lightboxImg.src = '';
+                }, 300);
+                
+                console.log('Lightbox closed by escape key');
+            }
         });
     }
     
