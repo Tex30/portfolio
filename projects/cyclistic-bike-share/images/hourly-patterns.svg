@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#333">Total Number of Rides by Hour of Day</text>
+  
+  <!-- Chart area background -->
+  <rect x="100" y="70" width="600" height="350" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Insight callout - MOVED HIGHER -->
+  <rect x="130" y="80" width="220" height="100" rx="5" fill="white" stroke="#4285f4" stroke-width="2"/>
+  <text x="240" y="105" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">Annual members show two peaks:</text>
+  <text x="240" y="125" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">8am and 5pm (commute hours)</text>
+  <text x="240" y="145" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">Casual riders peak in afternoon</text>
+  <text x="240" y="165" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">with more gradual distribution</text>
+  
+  <!-- Y-axis labels and grid lines -->
+  <text x="95" y="420" text-anchor="end" font-family="Arial" font-size="12" fill="#666">0</text>
+  <line x1="100" y1="420" x2="700" y2="420" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="345" text-anchor="end" font-family="Arial" font-size="12" fill="#666">50K</text>
+  <line x1="100" y1="345" x2="700" y2="345" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="270" text-anchor="end" font-family="Arial" font-size="12" fill="#666">100K</text>
+  <line x1="100" y1="270" x2="700" y2="270" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="195" text-anchor="end" font-family="Arial" font-size="12" fill="#666">150K</text>
+  <line x1="100" y1="195" x2="700" y2="195" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="120" text-anchor="end" font-family="Arial" font-size="12" fill="#666">200K</text>
+  <line x1="100" y1="120" x2="700" y2="120" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Y-axis title -->
+  <text x="40" y="245" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" transform="rotate(-90, 40, 245)">Total Number of Rides</text>
+  
+  <!-- X-axis labels -->
+  <text x="100" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">0</text>
+  <text x="150" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">2</text>
+  <text x="200" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">4</text>
+  <text x="250" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">6</text>
+  <text x="300" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">8</text>
+  <text x="350" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">10</text>
+  <text x="400" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">12</text>
+  <text x="450" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">14</text>
+  <text x="500" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">16</text>
+  <text x="550" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">18</text>
+  <text x="600" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">20</text>
+  <text x="650" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">22</text>
+  <text x="700" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">24</text>
+  
+  <!-- X-axis title -->
+  <text x="400" y="470" text-anchor="middle" font-family="Arial" font-size="14" fill="#333">Hour of Day (24h)</text>
+  
+  <!-- Annual Member Line -->
+  <path d="M100 415 L125 418 L150 419 L175 410 L200 390 L225 350 L250 290 L275 240 L300 190 L325 220 L350 240 L375 250 L400 240 L425 230 L450 210 L475 175 L500 140 L525 130 L550 150 L575 210 L600 280 L625 340 L650 380 L675 410 L700 415" 
+        fill="none" stroke="#4285f4" stroke-width="3"/>
+  
+  <!-- Casual Rider Line -->
+  <path d="M100 418 L125 419 L150 420 L175 418 L200 415 L225 405 L250 380 L275 350 L300 320 L325 290 L350 260 L375 240 L400 230 L425 220 L450 210 L475 200 L500 195 L525 190 L550 200 L575 240 L600 290 L625 350 L650 380 L675 410 L700 418" 
+        fill="none" stroke="#f4b400" stroke-width="3"/>
+  
+  <!-- Legend -->
+  <rect x="550" y="100" width="15" height="15" fill="#4285f4" rx="2"/>
+  <text x="570" y="113" font-family="Arial" font-size="14" fill="#333">Annual Members</text>
+  
+  <rect x="550" y="125" width="15" height="15" fill="#f4b400" rx="2"/>
+  <text x="570" y="138" font-family="Arial" font-size="14" fill="#333">Casual Riders</text>
+</svg>

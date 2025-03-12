@@ -1,1 +1,0 @@
-https://tex30.github.io/portfolio/

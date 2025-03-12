@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MB61WNNMV"></script>
+     <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-6MB61WNNMV');
+     </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyclistic Bike Share Analysis | Michael Teixeira</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="../../">MT</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../#hero">Home</a></li>
+                    <li><a href="../../#about">About</a></li>
+                    <li><a href="../../#skills">Skills</a></li>
+                    <li><a href="../../#projects">Projects</a></li>
+                    <li><a href="../../#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-hero-content">
+                <h1>Cyclistic Bike Share Analysis</h1>
+                <p>Data-driven analysis of bike-sharing usage patterns to convert casual riders into annual members</p>
+                <div class="project-meta">
+                    <div class="project-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>Completed: April 2024</span>
+                    </div>
+                    <div class="project-category">
+                        <i class="fas fa-tag"></i>
+                        <span>Data Analysis, R, Tableau, Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-overview">
+        <div class="container">
+            <div class="project-nav">
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+            <div class="project-content-wrapper">
+                <div class="project-content">
+                    <div id="overview" class="project-section">
+                        <h2>Project Overview</h2>
+                        <p>As part of the Google Data Analytics Professional Certificate Capstone project, I conducted an in-depth analysis of Cyclistic's bike-sharing data to understand the differences between casual riders and annual members, with the goal of developing actionable marketing strategies to convert casual riders into annual members.</p>
+                        
+                        <div class="project-card-info">
+                            <div class="info-item">
+                                <h4>Client</h4>
+                                <p>Cyclistic Bike-Share (Case Study)</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Duration</h4>
+                                <p>4 weeks</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Tools Used</h4>
+                                <p>R, Tableau, Visual Studio Code, Excel</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Team Size</h4>
+                                <p>1 data analyst</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Business Problem</h3>
+                        <p>Cyclistic, a bike-share company based in Chicago with over 5,800 bicycles and 600 docking stations, wanted to maximize the number of annual memberships, which are more profitable than casual ridership. The finance team identified that converting casual riders to annual members would be key to the company's future growth. My task was to analyze historical bike trip data to understand how annual members and casual riders use Cyclistic bikes differently.</p>
+                        
+                        <h3>Dataset Description</h3>
+                        <p>I analyzed 12 months of historical bike trip data from February 2023 to February 2024, containing over 5.8 million records with information about:</p>
+                        <ul>
+                            <li>Trip start and end times</li>
+                            <li>Trip start and end stations</li>
+                            <li>Rider type (casual or member)</li>
+                            <li>Bike type used</li>
+                        </ul>
+                        <p>All personal customer information had been removed for privacy. The data needed to be cleaned to remove maintenance trips (rides shorter than 1 minute or longer than one day).</p>
+                    </div>
+
+                    <div id="process" class="project-section">
+                        <h2>Technical Approach</h2>
+                        
+                        <h3>Data Preparation & Processing</h3>
+                        <ul>
+                            <li>Created a consolidated dataset by importing and combining 12 monthly CSV files into a single dataset for analysis</li>
+                            <li>Used R programming to clean, transform, and analyze the data</li>
+                            <li>Created additional columns for date, month, day, year, day of week, and ride length to facilitate deeper analysis</li>
+                            <li>Removed geographical coordinates but kept station names for location-based insights</li>
+                            <li>Filtered out maintenance trips (shorter than 1 minute or longer than 24 hours) and removed duplicate entries</li>
+                            <li>Processed over 5.8 million records, cleaning approximately 2.89 million rows to obtain a clean dataset of 3 million records</li>
+                        </ul>
+                        
+                        <h3>Analysis Methodology</h3>
+                        <ul>
+                            <li>Used R for initial data aggregation, statistical analysis, and pattern recognition</li>
+                            <li>Calculated average ride lengths by day of week and member type</li>
+                            <li>Compared usage patterns between casual riders and annual members</li>
+                            <li>Analyzed seasonal trends and peak usage times</li>
+                            <li>Created visualizations in R showing ride duration and frequency by user type</li>
+                            <li>Exported key data to Tableau for more advanced visualizations and interactive dashboards</li>
+                        </ul>
+                        
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/r-code-analysis.png" alt="R Code Analysis">
+                                <p class="image-caption">Initial R code used to load data</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/data-cleaning-process.png" alt="Data Cleaning Process">
+                                <p class="image-caption">Data cleaning workflow showing the transformation process</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="results" class="project-section">
+                        <h2>Results & Insights</h2>
+                        <p>My analysis revealed significant differences in how casual riders and annual members use Cyclistic bikes:</p>
+                        
+                        <h3>Key Findings</h3>
+                        <ul>
+                            <li><strong>Ride Duration:</strong> Casual members ride almost twice as long per trip (26.28 min) compared to annual members (14.77 min)</li>
+                            <li><strong>Weekly Patterns:</strong> Annual members use bikes consistently throughout the weekdays, while casual riders show higher activity on weekends</li>
+                            <li><strong>Daily Patterns:</strong> Annual members show peak usage during morning and evening commute hours, suggesting they use bikes for work transportation</li>
+                            <li><strong>Seasonal Trends:</strong> Both user types show highest activity during summer months (April to August), with winter seeing significant decline in usage</li>
+                            <li><strong>Hourly Patterns:</strong> Annual members have two distinct peaks at 8am and 5pm, while casual riders' usage gradually increases throughout the day</li>
+                        </ul>
+                        
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/avg-trip-duration.svg" alt="Average Trip Duration">
+                                <p class="image-caption">Average trip duration by member type and day of week</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/rides-by-day.svg" alt="Rides by Day of Week">
+                                <p class="image-caption">Number of rides by day of week and member type</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/monthly-trends.svg" alt="Monthly Trends">
+                                <p class="image-caption">Monthly ridership trends showing seasonal patterns</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/hourly-patterns.svg" alt="Hourly Usage Patterns">
+                                <p class="image-caption">Hourly usage patterns showing different peak times</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Tableau Visualizations</h3>
+                        <p>I created two different Tableau visualization sets to communicate my findings:</p>
+                        <ul>
+                            <li><strong>Version 1:</strong> Focused on ride length differences between user types with comparative bar charts highlighting the stark differences in usage patterns</li>
+                            <li><strong>Version 2:</strong> Provided deeper insights with ride length by month, day of week, and number of trips started per hour, revealing seasonal patterns and peak usage times</li>
+                        </ul>
+                        
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/tableau-dashboard1.png" alt="Tableau Dashboard 1">
+                                <p class="image-caption">Tableau dashboard showing ride length comparisons</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/tableau-dashboard2.png" alt="Tableau Dashboard 2">
+                                <p class="image-caption">Tableau story with multiple visualizations of usage patterns</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="conclusion" class="project-section">
+                        <h2>Recommendations & Conclusion</h2>
+                        
+                        <h3>Marketing Recommendations</h3>
+                        <p>Based on my analysis, I developed three strategic recommendations to convert casual riders to annual members:</p>
+                        
+                        <ul class="recommendation-list">
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Weekend-Focused Membership Benefits</div>
+                                <p>Offer new annual membership plans that include special weekend discounts or extended ride times on weekends to appeal to casual riders who predominantly use bikes on weekends.</p>
+                            </li>
+                            
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Flexible Membership Tiers</div>
+                                <p>Introduce 3-month and 6-month membership options as stepping stones to annual membership, with pricing structured to make the annual membership the best value. Include special winter discounts to address the seasonal usage drop.</p>
+                            </li>
+                            
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Strategic Promotional Timing</div>
+                                <p>Deploy targeted marketing campaigns during peak casual rider hours and seasons, offering limited-time discount deals during high-traffic periods to capture attention when most casual riders are using the service.</p>
+                            </li>
+                        </ul>
+                        
+                        <h3>Implementation Strategy</h3>
+                        <p>To effectively implement these recommendations, Cyclistic should:</p>
+                        <ol>
+                            <li><strong>Test weekend discounts (1-2 months):</strong> Pilot special weekend rates for annual members to gauge impact on conversion.</li>
+                            <li><strong>Launch flexible membership tiers (2-3 months):</strong> Introduce short-term membership options while maintaining value proposition of annual membership.</li>
+                            <li><strong>Deploy targeted marketing (ongoing):</strong> Time promotional messaging to coincide with peak casual ridership hours and seasons.</li>
+                            <li><strong>Measure conversion metrics (3-6 months):</strong> Track conversion rates from casual to member status to evaluate effectiveness.</li>
+                            <li><strong>Refine approach (6-12 months):</strong> Adjust strategies based on performance data and seasonal patterns.</li>
+                        </ol>
+                        
+                        <h3>Skills Demonstrated</h3>
+                        <p>This project showcased my abilities in:</p>
+                        <ul>
+                            <li><strong>Data cleaning and preparation:</strong> Processing large datasets and handling data quality issues</li>
+                            <li><strong>R programming:</strong> Using R for data manipulation, statistical analysis, and visualization</li>
+                            <li><strong>Data visualization:</strong> Creating effective visualizations in both R and Tableau</li>
+                            <li><strong>Strategic thinking:</strong> Translating data insights into actionable business recommendations</li>
+                            <li><strong>Communication:</strong> Presenting complex findings in a clear, concise manner for stakeholders</li>
+                        </ul>
+                        
+                        <div class="project-buttons">
+                            <a href="https://github.com/Tex30/Google-Data-Analytics-Professional-Certificate" class="btn btn-primary" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                            <a href="files/cyclistic_analysis_report.pdf" class="btn btn-secondary" download>
+                                Download Report
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Project Links</h3>
+                        <ul class="sidebar-links">
+                            <li>
+                                <i class="fab fa-github"></i>
+                                <a href="https://github.com/Tex30/Google-Data-Analytics-Professional-Certificate" target="_blank">GitHub Repository</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-powerpoint"></i>
+                                <a href="files/cyclistic_analysis_report.pdf" download>Download Report</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-chart-bar"></i>
+                                <a href="https://public.tableau.com/app/profile/michael.teixeira/vizzes" target="_blank">Tableau Visualizations</a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Technologies Used</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">R</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">Visual Studio Code</span>
+                            <span class="tech-tag">tidyverse</span>
+                            <span class="tech-tag">ggplot2</span>
+                            <span class="tech-tag">Data Cleaning</span>
+                            <span class="tech-tag">Data Visualization</span>
+                            <span class="tech-tag">Excel</span>
+                            <span class="tech-tag">Data Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3>Related Projects</h3>
+                        <div class="related-projects">
+                            <a href="../salifort-motors/" class="related-project">
+                                <img src="../../images/projects/salifort-motors/thumbnail-small.jpg" alt="Salifort Motors project thumbnail">
+                                <div class="related-project-info">
+                                    <h4>Salifort Motors HR Analytics</h4>
+                                    <p>Machine Learning, Python, HR Analytics</p>
+                                </div>
+                            </a>
+                            <a href="../data-visualization/" class="related-project">
+                                <img src="../../images/projects/data-visualization/thumbnail-small.jpg" alt="Data Visualization project thumbnail">
+                                <div class="related-project-info">
+                                    <h4>Interactive Data Visualization</h4>
+                                    <p>D3.js, JavaScript, Economics</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Interested in working together?</h2>
+            <p>I'm always open to new opportunities and collaborations.</p>
+            <div class="cta-buttons">
+                <a href="../../#contact" class="btn btn-primary">Get in Touch</a>
+                <a href="../../files/Michael_Teixeira_CV.pdf" class="btn btn-secondary" download>Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="../../">MT</a>
+                </div>
+                <p>© 2025 Michael Teixeira. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../terms-of-service.html">Terms of Service</a>
+                    <a href="#">Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

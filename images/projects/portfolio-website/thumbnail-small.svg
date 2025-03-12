@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60">
+  <!-- Background -->
+  <rect width="100" height="60" fill="#2D3748" />
+  
+  <!-- Grid pattern -->
+  <pattern id="smallgrid" width="5" height="5" patternUnits="userSpaceOnUse">
+    <path d="M 5 0 L 0 0 0 5" fill="none" stroke="#4A5568" stroke-opacity="0.2" stroke-width="0.2" />
+  </pattern>
+  <rect width="100" height="60" fill="url(#smallgrid)" />
+  
+  <!-- Browser window frame -->
+  <rect x="20" y="15" width="60" height="30" rx="2" fill="#1A202C" />
+  <rect x="20" y="15" width="60" height="5" rx="2" fill="#4A5568" />
+  <rect x="20" y="20" width="60" height="25" rx="0" fill="#EDF2F7" />
+  
+  <!-- Browser controls -->
+  <circle cx="23" cy="17.5" r="1" fill="#FC8181" />
+  <circle cx="26" cy="17.5" r="1" fill="#F6E05E" />
+  <circle cx="29" cy="17.5" r="1" fill="#68D391" />
+  
+  <!-- Website mockup -->
+  <!-- Header -->
+  <rect x="20" y="20" width="60" height="6" fill="#4A6FFF" />
+  <text x="23" y="24.5" font-family="Arial, sans-serif" font-size="3" font-weight="bold" fill="white">MT</text>
+  
+  <!-- Hero section -->
+  <rect x="20" y="26" width="60" height="8" fill="#16213E" />
+  <rect x="23" y="28" width="30" height="1.5" rx="0.5" fill="#FFFFFF" />
+  <rect x="23" y="31" width="20" height="1" rx="0.5" fill="#4A6FFF" />
+  
+  <!-- Project grid -->
+  <rect x="23" y="36" width="16" height="8" rx="1" fill="#FFFFFF" />
+  <rect x="23" y="36" width="16" height="4" rx="1" fill="#0CCA4A" />
+  
+  <rect x="42" y="36" width="16" height="8" rx="1" fill="#FFFFFF" />
+  <rect x="42" y="36" width="16" height="4" rx="1" fill="#4A6FFF" />
+  
+  <rect x="61" y="36" width="16" height="8" rx="1" fill="#FFFFFF" />
+  <rect x="61" y="36" width="16" height="4" rx="1" fill="#F59E0B" />
+  
+  <!-- Code element -->
+  <g transform="translate(5, 25) scale(0.15)">
+    <text x="0" y="0" font-family="monospace" font-size="14" fill="#E53E3E">&lt;div&gt;</text>
+    <text x="10" y="20" font-family="monospace" font-size="14" fill="#4A6FFF">&lt;h1&gt;</text>
+    <text x="0" y="80" font-family="monospace" font-size="14" fill="#E53E3E">&lt;/div&gt;</text>
+  </g>
+  
+  <!-- Title at bottom -->
+  <rect x="10" y="48" width="80" height="10" rx="2" fill="#1A202C" opacity="0.7" />
+  <text x="50" y="55" font-family="Arial, sans-serif" font-size="4" text-anchor="middle" fill="white">Portfolio Development</text>
+</svg>

@@ -1,0 +1,122 @@
+# Portfolio Website Design Document
+**Author**: Michael Teixeira  
+**Date**: March 2025  
+**Version**: 1.0
+
+## 1. Introduction
+
+### 1.1 Purpose
+This document outlines the design and implementation plan for my personal portfolio website. The portfolio will showcase my data science and web development projects while providing an engaging and professional online presence.
+
+### 1.2 Scope
+The website will include a homepage, project listing, detailed project pages, about me section, skills overview, and contact functionality. It will prioritize responsive design for optimal viewing across all devices.
+
+### 1.3 Audience
+- Potential employers in data science and development fields
+- Professional contacts and peers
+- Clients seeking data science and visualization services
+
+## 2. User Experience Design
+
+### 2.1 User Personas
+1. **Tech Recruiter**
+   - Needs quick access to skills, resume, and project highlights
+   - Values professional presentation and organization
+   - Limited technical knowledge but familiar with industry terms
+
+2. **Data Science Manager**
+   - Looking for detailed project information and methodologies
+   - Values technical depth and approach to problem-solving
+   - Wants to assess analytical thinking and technical proficiency
+
+3. **Fellow Developer**
+   - Interested in code implementation and technical solutions
+   - Values clean code and innovative approaches
+   - Likely to inspect design patterns and implementation details
+
+### 2.2 User Flows
+1. **Primary Flow: Project Exploration**
+   - Landing on homepage → Browsing featured projects → Selecting project → Viewing details → Accessing code repository
+
+2. **Secondary Flow: Professional Background**
+   - Landing on homepage → Navigating to About section → Viewing skills → Downloading resume → Contact
+
+3. **Tertiary Flow: Direct Contact**
+   - Landing on homepage → Scrolling to contact section → Submitting inquiry form
+
+## 3. Visual Design
+
+### 3.1 Color Scheme
+- **Primary Color**: #4A6FFF (Blue) - Projecting professionalism and trustworthiness
+- **Secondary Color**: #16213E (Dark Blue) - Creating depth and contrast
+- **Accent Color**: #0CCA4A (Green) - Highlighting key elements and calls-to-action
+- **Neutral Colors**: #F8F9FA (Light Gray), #333333 (Dark Gray) - Background and text
+- **White Space**: #FFFFFF - Ensuring readability and clean layout
+
+### 3.2 Typography
+- **Headings**: Poppins (Sans-serif) - Clean, modern, and professional
+- **Body Text**: Poppins (Sans-serif) - Consistent with headings for unified look
+- **Code Snippets**: Fira Code (Monospace) - Improved readability for code
+- **Font Sizes**:
+  - H1: 2.5rem
+  - H2: 2rem
+  - H3: 1.5rem
+  - Body: 1rem
+  - Small Text: 0.875rem
+
+### 3.3 Layout Guidelines
+- Mobile-first, responsive design approach
+- Consistent spacing using predefined variables
+- Strategic use of white space to improve readability
+- Card-based layout for project display
+- Hierarchical information architecture
+
+## 4. Technical Architecture
+
+### 4.1 Front-End Technologies
+- **HTML5**: Semantic markup for better accessibility and SEO
+- **CSS3**: Modern styling with variables, flexbox, and grid
+- **JavaScript**: Enhanced interactivity and user experience
+- **Responsive Framework**: Custom implementation using media queries
+- **Icons**: Font Awesome for consistent visual elements
+
+### 4.2 Development Tools
+- **Version Control**: Git and GitHub for source management
+- **Editor**: Visual Studio Code with web development extensions
+- **Testing**: Cross-browser testing on Chrome, Firefox, Safari, and Edge
+- **Optimization**: Image compression, code minification
+- **Deployment**: GitHub Pages for hosting
+
+### 4.3 Performance Considerations
+- Optimized image loading with appropriate sizing
+- Lazy loading for below-fold content
+- Minimal dependencies to reduce loading time
+- Compressed assets for faster delivery
+- Mobile performance optimization
+
+## 5. Content Structure
+
+### 5.1 Site Map
+```
+Home
+├── Hero Section
+├── About Me
+├── Skills
+├── Featured Projects
+└── Contact Form
+
+Projects
+├── Project Listing
+│   ├── Filtering Options
+│   └── Project Cards
+└── Individual Project Pages
+    ├── Overview
+    ├── Process
+    ├── Results
+    └── Conclusion
+
+Resume (Downloadable PDF)
+```
+
+### 5.2 Page Templates
+- **Homepage**: Full-screen hero with navigation,

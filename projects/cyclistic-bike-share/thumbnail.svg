@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#f5f9fa"/>
+  
+  <!-- Decorative Elements -->
+  <path d="M0,400 L600,400 L600,320 C500,350 400,330 300,360 C200,390 100,370 0,340 Z" fill="#43a0a8" opacity="0.9"/>
+  <path d="M0,400 L600,400 L600,340 C500,360 400,340 300,370 C200,400 100,380 0,350 Z" fill="#4bbbc6" opacity="0.7"/>
+  
+  <!-- Logo Section -->
+  <circle cx="150" cy="180" r="100" fill="#43a0a8"/>
+  
+  <!-- Bike Icon -->
+  <circle cx="105" cy="195" r="40" fill="none" stroke="white" stroke-width="8"/>
+  <circle cx="195" cy="195" r="40" fill="none" stroke="white" stroke-width="8"/>
+  <path d="M105,195 L135,145 L180,145 L195,195" stroke="white" stroke-width="8" fill="none"/>
+  <path d="M135,145 L150,175 L120,195" stroke="white" stroke-width="8" fill="none"/>
+  <circle cx="150" cy="130" r="15" fill="white"/>
+  
+  <!-- Text Section -->
+  <text x="300" y="150" font-family="Arial" font-size="38" font-weight="bold" fill="#333">Cyclistic</text>
+  <text x="300" y="195" font-family="Arial" font-size="28" fill="#43a0a8">Bike Share Analysis</text>
+  
+   
+  <!-- Data Visualization Element -->
+  <rect x="300" y="280" width="40" height="80" rx="3" fill="#43a0a8"/>
+  <rect x="350" y="260" width="40" height="100" rx="3" fill="#4bbbc6"/>
+  <rect x="400" y="310" width="40" height="50" rx="3" fill="#43a0a8"/>
+  <rect x="450" y="240" width="40" height="120" rx="3" fill="#4bbbc6"/>
+  <rect x="500" y="290" width="40" height="70" rx="3" fill="#43a0a8"/>
+</svg>

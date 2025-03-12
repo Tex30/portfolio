@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MB61WNNMV"></script>
+     <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-6MB61WNNMV');
+         
+         // 404 Error Tracker
+         window.addEventListener('load', function() {
+             // Capture information about the 404 error
+             var referrer = document.referrer || 'Direct entry';
+             var requestedUrl = window.location.href;
+             
+             // Send 404 error data to Google Analytics
+             gtag('event', '404_error', {
+                 'event_category': 'Error',
+                 'event_label': requestedUrl,
+                 'referrer': referrer
+             });
+             
+             console.log('404 error tracked: ' + requestedUrl + ' (Referrer: ' + referrer + ')');
+         });
+     </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Michael Teixeira</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        
+        .error-message {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .error-description {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .error-image {
+            max-width: 300px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="">MT</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html#hero">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="error-container">
+        <div class="container">
+            <div class="error-code">404</div>
+            <h1 class="error-message">Page Not Found</h1>
+            <p class="error-description">Oops! The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+            <div class="error-image">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" fill="none">
+                    <path d="M319.5 132.5C315.5 132.5 312 133.9 309.2 136.2C309.2 136 309.1 135.8 309.1 135.5C309.1 128.6 303.5 123 296.6 123C292.4 123 288.6 125 286.4 128.1C284.1 121.5 277.9 116.9 270.6 116.9C261.2 116.9 253.6 124.5 253.6 133.9C253.6 134.5 253.7 135.1 253.8 135.7C250.8 133.5 247.1 132.2 243 132.2C234.1 132.2 226.9 139.5 226.9 148.3C226.9 157.2 234.1 164.4 243 164.4H319.5C328.3 164.4 335.6 157.2 335.6 148.3C335.6 139.5 328.3 132.5 319.5 132.5Z" fill="#E6E6E6"/>
+                    <path d="M344 227H156V229H344V227Z" fill="#3F3D56"/>
+                    <path d="M89.3 96.6L112.4 119.7L118.1 114.1L94.9 90.9L89.3 96.6Z" fill="#A777E3"/>
+                    <path d="M73 124L84.4 135.4L90.1 129.7L78.7 118.3L73 124Z" fill="#A777E3"/>
+                    <path d="M100.6 146.7L116.4 162.5L122.1 156.8L106.3 141L100.6 146.7Z" fill="#A777E3"/>
+                    <path d="M142.6 139.7L165.7 162.8L171.4 157.1L148.2 134L142.6 139.7Z" fill="#A777E3"/>
+                    <path d="M126.3 167.1L137.7 178.5L143.4 172.8L132 161.4L126.3 167.1Z" fill="#A777E3"/>
+                    <path d="M153.9 189.8L169.7 205.6L175.4 199.9L159.6 184.1L153.9 189.8Z" fill="#A777E3"/>
+                    <path d="M356.4 118.3L333.3 141.5L327.6 135.8L350.8 112.7L356.4 118.3Z" fill="#A777E3"/>
+                    <path d="M372.7 145.8L361.3 157.2L355.6 151.5L367 140.1L372.7 145.8Z" fill="#A777E3"/>
+                    <path d="M345.1 168.4L329.3 184.2L323.6 178.5L339.4 162.7L345.1 168.4Z" fill="#A777E3"/>
+                    <path d="M303.1 161.4L280 184.5L274.3 178.8L297.5 155.7L303.1 161.4Z" fill="#A777E3"/>
+                    <path d="M319.4 188.8L308 200.2L302.3 194.5L313.7 183.1L319.4 188.8Z" fill="#A777E3"/>
+                    <path d="M291.8 211.5L276 227.3L270.3 221.6L286.1 205.8L291.8 211.5Z" fill="#A777E3"/>
+                    <path d="M297.7 97.8H201.4V227H297.7V97.8Z" fill="#3F3D56"/>
+                    <path d="M249.5 97.8C249.5 97.8 193.1 146.2 172.9 146.2V227H326.2V146.2C298.4 146.2 249.5 97.8 249.5 97.8Z" fill="#6E8EFB"/>
+                    <path d="M214.4 171.9H206.4V179.9H214.4V171.9Z" fill="white"/>
+                    <path d="M214.4 188.8H206.4V196.8H214.4V188.8Z" fill="white"/>
+                    <path d="M214.4 205.8H206.4V213.8H214.4V205.8Z" fill="white"/>
+                    <path d="M232.3 171.9H224.3V179.9H232.3V171.9Z" fill="white"/>
+                    <path d="M232.3 188.8H224.3V196.8H232.3V188.8Z" fill="white"/>
+                    <path d="M232.3 205.8H224.3V213.8H232.3V205.8Z" fill="white"/>
+                    <path d="M250.3 171.9H242.3V179.9H250.3V171.9Z" fill="white"/>
+                    <path d="M250.3 188.8H242.3V196.8H250.3V188.8Z" fill="white"/>
+                    <path d="M250.3 205.8H242.3V213.8H250.3V205.8Z" fill="white"/>
+                    <path d="M268.2 171.9H260.2V179.9H268.2V171.9Z" fill="white"/>
+                    <path d="M268.2 188.8H260.2V196.8H268.2V188.8Z" fill="white"/>
+                    <path d="M268.2 205.8H260.2V213.8H268.2V205.8Z" fill="white"/>
+                    <path d="M286.1 171.9H278.1V179.9H286.1V171.9Z" fill="white"/>
+                    <path d="M286.1 188.8H278.1V196.8H286.1V188.8Z" fill="white"/>
+                    <path d="M286.1 205.8H278.1V213.8H286.1V205.8Z" fill="white"/>
+                </svg>
+            </div>
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="index.html#projects" class="btn btn-secondary">
+                    <i class="fas fa-project-diagram"></i> View Projects
+                </a>
+                <a href="index.html#contact" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="index.html">MT</a>
+                </div>
+                <p>© 2025 Michael Teixeira. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="index.html">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    
+    <script>
+        // 404 Error Tracker
+        window.addEventListener('load', function() {
+            // Capture information about the 404 error
+            var referrer = document.referrer || 'Direct entry';
+            var requestedUrl = window.location.href;
+            
+            // Send 404 error data to Google Analytics
+            gtag('event', '404_error', {
+                'event_category': 'Error',
+                'event_label': requestedUrl,
+                'referrer': referrer
+            });
+            
+            console.log('404 error tracked: ' + requestedUrl + ' (Referrer: ' + referrer + ')');
+        });
+    </script>
+</body>
+</html>

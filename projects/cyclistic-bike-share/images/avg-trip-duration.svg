@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <!-- Background -->
+  <rect width="800" height="500" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold" fill="#333">Average Trip Duration by Member Type and Day of Week</text>
+  
+  <!-- Chart area background -->
+  <rect x="100" y="70" width="600" height="350" fill="#ffffff" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Y-axis labels and grid lines -->
+  <text x="95" y="420" text-anchor="end" font-family="Arial" font-size="12" fill="#666">0</text>
+  <line x1="100" y1="420" x2="700" y2="420" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="345" text-anchor="end" font-family="Arial" font-size="12" fill="#666">5</text>
+  <line x1="100" y1="345" x2="700" y2="345" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="270" text-anchor="end" font-family="Arial" font-size="12" fill="#666">10</text>
+  <line x1="100" y1="270" x2="700" y2="270" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="195" text-anchor="end" font-family="Arial" font-size="12" fill="#666">15</text>
+  <line x1="100" y1="195" x2="700" y2="195" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="120" text-anchor="end" font-family="Arial" font-size="12" fill="#666">20</text>
+  <line x1="100" y1="120" x2="700" y2="120" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <text x="95" y="70" text-anchor="end" font-family="Arial" font-size="12" fill="#666">25</text>
+  <line x1="100" y1="70" x2="700" y2="70" stroke="#e0e0e0" stroke-width="1"/>
+  
+  <!-- Y-axis title -->
+  <text x="40" y="245" text-anchor="middle" font-family="Arial" font-size="14" fill="#333" transform="rotate(-90, 40, 245)">Average Duration (minutes)</text>
+  
+  <!-- X-axis labels -->
+  <text x="142" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Monday</text>
+  <text x="228" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Tuesday</text>
+  <text x="314" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Wednesday</text>
+  <text x="400" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Thursday</text>
+  <text x="486" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Friday</text>
+  <text x="572" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Saturday</text>
+  <text x="658" y="440" text-anchor="middle" font-family="Arial" font-size="12" fill="#666">Sunday</text>
+  
+  <!-- X-axis title -->
+  <text x="400" y="470" text-anchor="middle" font-family="Arial" font-size="14" fill="#333">Day of Week</text>
+  
+  <!-- Bars for Annual Members -->
+  <!-- Monday -->
+  <rect x="127" y="298" width="30" height="122" fill="#4285f4" rx="3"/>
+  <!-- Tuesday -->
+  <rect x="213" y="298" width="30" height="122" fill="#4285f4" rx="3"/>
+  <!-- Wednesday -->
+  <rect x="299" y="299" width="30" height="121" fill="#4285f4" rx="3"/>
+  <!-- Thursday -->
+  <rect x="385" y="298" width="30" height="122" fill="#4285f4" rx="3"/>
+  <!-- Friday -->
+  <rect x="471" y="293" width="30" height="127" fill="#4285f4" rx="3"/>
+  <!-- Saturday -->
+  <rect x="557" y="276" width="30" height="144" fill="#4285f4" rx="3"/>
+  <!-- Sunday -->
+  <rect x="643" y="281" width="30" height="139" fill="#4285f4" rx="3"/>
+  
+  <!-- Bars for Casual Riders -->
+  <!-- Monday -->
+  <rect x="157" y="220" width="30" height="200" fill="#f4b400" rx="3"/>
+  <!-- Tuesday -->
+  <rect x="243" y="230" width="30" height="190" fill="#f4b400" rx="3"/>
+  <!-- Wednesday -->
+  <rect x="329" y="238" width="30" height="182" fill="#f4b400" rx="3"/>
+  <!-- Thursday -->
+  <rect x="415" y="229" width="30" height="191" fill="#f4b400" rx="3"/>
+  <!-- Friday -->
+  <rect x="501" y="204" width="30" height="216" fill="#f4b400" rx="3"/>
+  <!-- Saturday -->
+  <rect x="587" y="155" width="30" height="265" fill="#f4b400" rx="3"/>
+  <!-- Sunday -->
+  <rect x="673" y="165" width="30" height="255" fill="#f4b400" rx="3"/>
+  
+  <!-- Legend -->
+  <rect x="550" y="100" width="15" height="15" fill="#4285f4" rx="2"/>
+  <text x="570" y="113" font-family="Arial" font-size="14" fill="#333">Annual Members</text>
+  
+  <rect x="550" y="125" width="15" height="15" fill="#f4b400" rx="2"/>
+  <text x="570" y="138" font-family="Arial" font-size="14" fill="#333">Casual Riders</text>
+
+  <!-- Insight callout -->
+  <rect x="120" y="110" width="200" height="80" rx="5" fill="white" stroke="#4285f4" stroke-width="2"/>
+  <text x="220" y="135" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">Casual riders have longer</text>
+  <text x="220" y="155" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">trips (26.28 min avg)</text>
+  <text x="220" y="175" text-anchor="middle" font-family="Arial" font-size="13" fill="#333">vs. members (14.77 min avg)</text>
+</svg>

@@ -1,144 +1,384 @@
----
-layout: home
-title: Michael Teixeira - Data Scientist
----
-
-<!-- Header Section -->
-<div class="profile-header">
-    <img src="{{ '/assets/images/profile-photo.jpg' | relative_url }}" alt="Michael Teixeira" class="profile-image" onerror="this.src='https://via.placeholder.com/150?text=MT'">
-    <div class="profile-info">
-        <h1 class="profile-title">Michael Teixeira</h1>
-        <h3 class="profile-subtitle">Data Scientist & Analytics Professional</h3>
-        <p>Transforming complex data into actionable business insights through advanced analytics, machine learning, and compelling data storytelling. Specialized in predictive modeling for business optimization and retention strategies.</p>
-        <div class="contact-links">
-            {% for link in site.data.social %}
-            <a href="{{ link.url }}" target="_blank">
-                <i class="fab fa-{{ link.icon }}"></i> {{ link.name }}
-            </a>
-            {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MB61WNNMV"></script>
+     <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-6MB61WNNMV');
+     </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Scientist & ML Engineer | Michael Teixeira</title>
+        <!-- Favicon -->
+        <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+        <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="">MT</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
         </div>
-    </div>
-</div>
+    </header>
 
-<!-- Skills Section -->
-<h2 id="skills">Skills & Expertise</h2>
-{% include skills.html %}
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Michael Teixeira</h1>
+                <h2>Data Scientist & ML Engineer</h2>
+                <p>Transforming data into actionable insights and elegant solutions</p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">View Projects</a>
+                    <a href="files/Michael_Teixeira_CV.pdf" class="btn btn-secondary" download>Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Education Section -->
-<h2 id="education">Education</h2>
-<ul>
-    <li>Graduate Certificate in Data Science | RMIT, Melbourne, Australia (<em>Feb 2025</em>)</li>
-    <li>Certificate IV in IT | Escola Secundaria de Vouzela (<em>Jun 2013</em>)</li>
-</ul>
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/profile.jpg" alt="Michael Teixeira profile photo">
+                </div>
+                <div class="about-text">
+                    <h3>Hello, I'm Michael!</h3>
+                    <p>I'm a passionate data scientist with expertise in machine learning, statistical analysis, and data visualization. With a background in IT and construction, I've developed a unique problem-solving approach that combines technical knowledge with practical experience. I specialize in turning complex datasets into clear insights and developing user-friendly applications.</p>
+                    <p>My journey from hands-on construction work to data science reflects my adaptability, determination, and analytical mindset. I'm constantly learning and exploring new technologies to enhance my skill set, currently advancing through specialized certifications and real-world projects.</p>
+                    <div class="about-details">
+                        <div class="detail">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Graduate Certificate in Data Science (RMIT)</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Data Science Intern at Green Home Green Planet</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>North Melbourne, VIC</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-language"></i>
+                            <span>English, Portuguese</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Featured Projects Section -->
-<h2 id="projects">Featured Projects</h2>
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Skills</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-content">
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-name">Python</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Machine Learning</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Statistics</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">SQL</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Visualization</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-name">Tableau</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Power BI</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Seaborn/Plotly</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">R</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Technologies</h3>
+                    <div class="skill-items">
+                        <div class="skill-item">
+                            <div class="skill-name">Jupyter Notebook</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Git</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Databases (MySQL, PostgreSQL)</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Excel/GA4</div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div id="project-filters" class="filter-container">
-  <!-- Filter buttons will be added here by JavaScript -->
-</div>
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Projects</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/salifort-motors/thumbnail.png" alt="Salifort Motors project">
+                    </div>
+                    <div class="project-content">
+                        <h3>Salifort Motors HR Analytics</h3>
+                        <p>Employee retention prediction model using machine learning to identify factors influencing turnover.</p>
+                        <div class="project-tags">
+                            <span>Machine Learning</span>
+                            <span>Python</span>
+                            <span>HR Analytics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/salifort-motors/" class="btn btn-small">View Project</a>
+                            <a href="https://github.com/Tex30/employee-turnover-prediction" class="btn btn-small btn-outline" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/cyclistic-bike-share/thumbnail.jpg" alt="Cyclistic Bike Share project">
+                    </div>
+                    <div class="project-content">
+                        <h3>Cyclistic Bike Share Analysis</h3>
+                        <p>Comprehensive analysis of bike share data to identify usage patterns and improve marketing strategies.</p>
+                        <div class="project-tags">
+                            <span>Data Analysis</span>
+                            <span>R</span>
+                            <span>Tableau</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/cyclistic-bike-share/" class="btn btn-small">View Project</a>
+                            <a href="https://github.com/Tex30/Google-Data-Analytics-Professional-Certificate" class="btn btn-small btn-outline" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="images/projects/portfolio-website/thumbnail.svg" alt="Portfolio Website Development project">
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio Website Development</h3>
+                        <p>Building a responsive, modern portfolio website from scratch to showcase data science and development projects.</p>
+                        <div class="project-tags">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                            <span>Responsive Design</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="projects/portfolio-website/" class="btn btn-small">View Project</a>
+                            <a href="https://github.com/Tex30/portfolio" class="btn btn-small btn-outline" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="projects-cta">
+                <a href="projects/" class="btn btn-primary">View All Projects</a>
+            </div>
+        </div>
+    </section>
 
-<div class="projects-grid">
-  {% for project in site.data.projects %}
-    {% include project-card.html project=project %}
-  {% endfor %}
-</div>
-
-<!-- Educational Projects Section -->
-<h2>Educational Projects</h2>
-<div class="education-toggle">
-    <span>Graduate Certificate in Data Science Coursework</span>
-    <span class="toggle-icon">▼</span>
-</div>
-<div class="education-content">
-    <p><a href="https://github.com/Tex30/Graduate-Certificate-in-Data-Science/" target="_blank">
-        <img src="https://img.shields.io/badge/GitHub-View_on_GitHub-blue?logo=GitHub" alt="View on GitHub">
-    </a></p>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:teixeira01michael@gmail.com">teixeira01michael@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+61406540421">+61 406 540 421</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>North Melbourne, VIC</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/michael-teixeira-66298024a/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/Tex30" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://tex30.github.io/portfolio/" target="_blank" class="social-link">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm" action="https://formspree.io/f/xwpledoe" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <!-- Anti-spam honeypot field (hidden) -->
+                        <input type="text" name="_gotcha" style="display:none">
+                        
+                        <!-- Redirect after submission -->
+                        <input type="hidden" name="_next" value="thank-you.html">
     
-    <p>Completed as part of the <a href="https://studyonline.rmit.edu.au/online-programs/graduate-certificate-data-science" target="_blank"><strong>GC173KP19 - Graduate Certificate in Data Science</strong></a> by RMIT.</p>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    <div class="education-courses">
-        <div class="course-card">
-            <h4>Data Wrangling</h4>
-            <ul>
-                <li>Pre-processing data project: <a href="posts/Data-Wrangling/a1/MichaelTeixeiraAssignment1.html">code</a> | <a href="posts/Data-Wrangling/a1/MichaelTeixeiraS4133975.pdf">handout</a></li>
-                <li>Coding exercises: <a href="posts/Data-Wrangling/a2/MATH2405_Assignment_2.html">code</a> | <a href="posts/Data-Wrangling/a2/MichaelTeixeiraS4133975.pdf">handout</a></li>
-                <li>Applied relational data project: 
-                    <a href="posts/Data-Wrangling/a3/MATH2405_Assignment.html">code</a> | 
-                    <a href="posts/Data-Wrangling/a3/Michael%20Teixeira%20S4133975.pdf">handout</a> | 
-                    <a href="https://www.loom.com/share/09e8b3ec0782438ebd5ba8afc8db0248?sid=764b1c4c-f4a2-473d-9a54-faf9d25f6109">presentation</a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="course-card">
-            <h4>Practical Data Science with Python</h4>
-            <ul>
-                <li>Dataset preparation report: 
-                    <a href="posts/Practical-Data-Science-with-Python/a1/assignment1.html">code</a> | 
-                    <a href="posts/Practical-Data-Science-with-Python/a1/report.pdf">handout</a>
-                </li>
-                <li>Data modelling report: 
-                    <a href="posts/Practical-Data-Science-with-Python/a2/Assignment2.html">code</a> | 
-                    <a href="posts/Practical-Data-Science-with-Python/a2/report.pdf">handout</a>
-                </li>
-                <li>Data modelling presentation: 
-                    <a href="posts/Practical-Data-Science-with-Python/a3/assignment3.html">code</a> | 
-                    <a href="https://drive.google.com/file/d/1pmHBuRym4nhtFVxYzLTfmvdDq8zkCqIL/view?usp=drive_link">presentation</a>
-                </li>
-            </ul>
-        </div>
-        
-        <div class="course-card">
-            <h4>Data Visualisation and Communication</h4>
-            <ul>
-                <li>Data visualisation storytelling: 
-                    <a href="posts/Data-Visualisation-and-Communication/a1/MichaelTeixeiraS4133975.pdf">pdf</a> | 
-                    <a href="https://drive.google.com/file/d/1sV4HnTZZuOLH7iUa-pUywestMwNcryX0/view?usp=drive_link">vodcast</a>
-                </li>
-                <li>Data visualisation critique: 
-                    <a href="posts/Data-Visualisation-and-Communication/a2/Assignment2.html">code</a> | 
-                    <a href="posts/Data-Visualisation-and-Communication/a2/MichaelTeixeiraS4133975.pdf">handout</a>
-                </li>
-                <li>Storytelling with open data: 
-                    <a href="https://ju12ki-michael-teixeira.shinyapps.io/Assignment3/#section-overview">Dashboard</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- Call to Action Section -->
-<div class="cta-section home-cta">
-    <h2>Let's Work Together</h2>
-    <p>Looking for a data scientist to help extract insights from your data or build a predictive model for your business?</p>
-    <div class="cta-buttons">
-        <a href="{{ '/pages/contact/' | relative_url }}" class="btn">Contact Me</a>
-        <a href="{{ '/assets/pdf/resume.pdf' | relative_url }}" class="btn btn-secondary" target="_blank">Download Resume</a>
-    </div>
-</div>
-
-<!-- JavaScript to handle the education toggle -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.querySelector('.education-toggle');
-        const content = document.querySelector('.education-content');
-        const toggleIcon = document.querySelector('.toggle-icon');
-        
-        // Initialize as collapsed
-        content.style.display = 'none';
-        
-        toggleBtn.addEventListener('click', function() {
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                toggleIcon.textContent = '▼';
-            } else {
-                content.style.display = 'none';
-                toggleIcon.textContent = '►';
+    <script>
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default submission
+    
+        var form = event.target;
+        var formData = new FormData(form);
+    
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
             }
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = "thank-you.html"; // Redirect on success
+            } else {
+                alert("There was an issue submitting the form. Please try again.");
+            }
+        }).catch(error => {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
         });
     });
-</script>
+    </script>
 
-<!-- Project filter script -->
-<script src="{{ '/assets/js/project-filter.js' | relative_url }}"></script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="">MT</a>
+                </div>
+                <p>© 2025 Michael Teixeira. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                    <a href="#hero">Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

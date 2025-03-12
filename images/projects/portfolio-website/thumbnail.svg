@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <!-- Background -->
+  <rect width="600" height="400" fill="#2D3748" />
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+    <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#4A5568" stroke-width="1" />
+  </pattern>
+  <rect width="600" height="400" fill="url(#grid)" />
+  
+  <!-- Browser window frame -->
+  <rect x="100" y="80" width="400" height="240" rx="8" fill="#1A202C" />
+  <rect x="100" y="80" width="400" height="30" rx="8" fill="#4A5568" />
+  <rect x="100" y="110" width="400" height="210" rx="0" fill="#EDF2F7" />
+  
+  <!-- Browser controls -->
+  <circle cx="120" cy="95" r="5" fill="#FC8181" />
+  <circle cx="140" cy="95" r="5" fill="#F6E05E" />
+  <circle cx="160" cy="95" r="5" fill="#68D391" />
+  <rect x="180" y="90" width="240" height="10" rx="5" fill="#2D3748" />
+  
+  <!-- Website mockup -->
+  <!-- Header -->
+  <rect x="100" y="110" width="400" height="50" fill="#4A6FFF" />
+  <text x="120" y="140" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">MT</text>
+  <rect x="350" y="125" width="120" height="20" rx="4" fill="#3D5CDB" />
+  
+  <!-- Hero section -->
+  <rect x="100" y="160" width="400" height="80" fill="#16213E" />
+  <rect x="120" y="180" width="200" height="15" rx="2" fill="#FFFFFF" />
+  <rect x="120" y="205" width="150" height="10" rx="2" fill="#4A6FFF" />
+  <rect x="120" y="225" width="90" height="8" rx="2" fill="#FFFFFF" opacity="0.7" />
+  
+  <!-- Project grid -->
+  <rect x="120" y="260" width="110" height="70" rx="4" fill="#FFFFFF" />
+  <rect x="120" y="260" width="110" height="40" rx="4" fill="#0CCA4A" />
+  <rect x="125" y="310" width="70" height="5" rx="1" fill="#2D3748" />
+  <rect x="125" y="320" width="50" height="3" rx="1" fill="#718096" />
+  
+  <rect x="245" y="260" width="110" height="70" rx="4" fill="#FFFFFF" />
+  <rect x="245" y="260" width="110" height="40" rx="4" fill="#4A6FFF" />
+  <rect x="250" y="310" width="70" height="5" rx="1" fill="#2D3748" />
+  <rect x="250" y="320" width="50" height="3" rx="1" fill="#718096" />
+  
+  <rect x="370" y="260" width="110" height="70" rx="4" fill="#FFFFFF" />
+  <rect x="370" y="260" width="110" height="40" rx="4" fill="#F59E0B" />
+  <rect x="375" y="310" width="70" height="5" rx="1" fill="#2D3748" />
+  <rect x="375" y="320" width="50" height="3" rx="1" fill="#718096" />
+  
+  <!-- Code elements -->
+  <g transform="translate(35, 160)">
+    <!-- HTML tag -->
+    <text x="0" y="0" font-family="monospace" font-size="14" fill="#E53E3E">&lt;div&gt;</text>
+    <text x="10" y="20" font-family="monospace" font-size="14" fill="#4A6FFF">&lt;h1&gt;</text>
+    <text x="20" y="40" font-family="monospace" font-size="14" fill="#718096">Portfolio</text>
+    <text x="10" y="60" font-family="monospace" font-size="14" fill="#4A6FFF">&lt;/h1&gt;</text>
+    <text x="0" y="80" font-family="monospace" font-size="14" fill="#E53E3E">&lt;/div&gt;</text>
+  </g>
+  
+  <g transform="translate(500, 160)">
+    <!-- CSS code -->
+    <text x="0" y="0" font-family="monospace" font-size="14" fill="#4A6FFF">.container {</text>
+    <text x="10" y="20" font-family="monospace" font-size="14" fill="#0CCA4A">display: flex;</text>
+    <text x="10" y="40" font-family="monospace" font-size="14" fill="#0CCA4A">width: 100%;</text>
+    <text x="0" y="60" font-family="monospace" font-size="14" fill="#4A6FFF">}</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="300" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">Portfolio Website Development</text>
+  
+  <!-- Technologies label -->
+  <rect x="150" y="350" width="300" height="30" rx="15" fill="#1A202C" opacity="0.7" />
+  <text x="300" y="370" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="white">HTML5 • CSS3 • JavaScript • Responsive Design</text>
+</svg>

@@ -1,6 +1,0 @@
-// Sidebar styles
-
-.sidebar {
-  width: var(--sidebar-width);
-  height: 100vh;
-  background-color: var(--sidebar-backgroun
