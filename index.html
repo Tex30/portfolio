@@ -289,8 +289,17 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+61406540421">+61 406 540 421</a>
+                            <a href="#" id="showPhoneBtn" class="request-phone">Request Phone Number</a>
+                            <span id="phoneNumber" style="display: none;">+61 406 540 421</span>
                         </div>
+                        
+                        <script>
+                            document.getElementById('showPhoneBtn').addEventListener('click', function(e) {
+                                e.preventDefault();
+                                document.getElementById('phoneNumber').style.display = 'inline';
+                                this.style.display = 'none';
+                            });
+                        </script>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>North Melbourne, VIC</span>
