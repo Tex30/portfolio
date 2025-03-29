@@ -331,7 +331,56 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    // Handle "Back to Top" link in footer
+const backToTopLink = document.querySelector('.footer-links a[href="#"]');
+if (backToTopLink) {
+    backToTopLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Scroll to the top of the page smoothly
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        console.log('Back to top link clicked');
+    });
+}
+
+// Create floating back-to-top button
+const createBackToTopButton = function() {
+    // Create the button element
+    const backToTopBtn = document.createElement('div');
+    backToTopBtn.id = 'back-to-top-btn';
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     
+    // Append to the body
+    document.body.appendChild(backToTopBtn);
+    
+    // Show or hide the button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        console.log('Back to top button clicked');
+    });
+};
+
+// Call the function to create the button
+createBackToTopButton();
+
+
     // -------------- Dark mode toggle (optional) --------------
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     

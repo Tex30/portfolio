@@ -51,7 +51,7 @@
         <div class="container">
             <div class="project-hero-content">
                 <h1>Salifort Motors HR Analytics</h1>
-                <p>Employee retention prediction model using machine learning to identify factors influencing turnover</p>
+                <p>Machine learning-driven analysis of employee turnover with actionable retention strategies</p>
                 <div class="project-meta">
                     <div class="project-date">
                         <i class="far fa-calendar-alt"></i>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="project-category">
                         <i class="fas fa-tag"></i>
-                        <span>Machine Learning, Python, HR Analytics</span>
+                        <span>Machine Learning, Python, Data Analysis, Visualization</span>
                     </div>
                 </div>
             </div>
@@ -80,199 +80,220 @@
                 <div class="project-content">
                     <div id="overview" class="project-section">
                         <h2>Project Overview</h2>
-                        <p>A mid-sized company was experiencing high employee turnover rates, resulting in significant recruitment costs, reduced productivity, and loss of institutional knowledge. HR leaders needed to understand the factors driving departures and identify at-risk employees before they resigned to implement proactive retention strategies.</p>
+                        <p>For my capstone project at the Google Advanced Data Analytics Certificate, I developed a machine learning solution for Salifort Motors to predict and reduce employee turnover. Using HR analytics, I identified key factors contributing to employee departures and created a predictive model with personalized retention strategies.</p>
                         
                         <div class="project-card-info">
                             <div class="info-item">
                                 <h4>Client</h4>
-                                <p>Salifort Motors HR Department</p>
+                                <p>Salifort Motors (Case Study)</p>
                             </div>
                             <div class="info-item">
                                 <h4>Duration</h4>
-                                <p>2 weeks</p>
+                                <p>6 weeks</p>
                             </div>
                             <div class="info-item">
                                 <h4>Tools Used</h4>
-                                <p>Python, Scikit-learn, Pandas, Matplotlib, Seaborn</p>
+                                <p>Python, scikit-learn, Pandas, Matplotlib, Seaborn</p>
                             </div>
                             <div class="info-item">
                                 <h4>Team Size</h4>
-                                <p>3 data scientists</p>
+                                <p>1 data scientist</p>
                             </div>
                         </div>
                         
                         <h3>Business Problem</h3>
-                        <p>Salifort Motors was experiencing high turnover rates that were affecting their business in multiple ways:</p>
-                        <ul>
-                            <li>High turnover costs (1.5-2x annual salary per employee lost)</li>
-                            <li>Decreased team productivity during transition periods</li>
-                            <li>Lost institutional knowledge and expertise</li>
-                            <li>Reduced morale among remaining team members</li>
-                            <li>Limited visibility into why employees were leaving</li>
-                        </ul>
+                        <p>Salifort Motors, a leading automotive manufacturer, was experiencing an alarmingly high employee turnover rate of 16.6%. Each lost employee cost the company between 50-200% of their annual salary in recruitment, training, and lost productivity. The HR department needed to understand which employees were most likely to leave and why, allowing them to take proactive steps to improve retention.</p>
                         
                         <h3>Dataset Description</h3>
-                        <p>The dataset contained 15,000 employee records with 10 features including:</p>
+                        <p>I analyzed a comprehensive HR dataset with 14,999 employee records containing 10 variables including:</p>
                         <ul>
-                            <li>Demographics (age, gender)</li>
-                            <li>Job characteristics (department, role, salary)</li>
-                            <li>Work experience (tenure, previous companies)</li>
-                            <li>Performance metrics (satisfaction scores, evaluation results)</li>
-                            <li>Work arrangements (hours worked, remote work percentage)</li>
+                            <li>Satisfaction level (0-1 scale)</li>
+                            <li>Last performance evaluation score (0-1 scale)</li>
+                            <li>Number of projects assigned</li>
+                            <li>Average monthly working hours</li>
+                            <li>Years at company (tenure)</li>
+                            <li>Work accident history</li>
+                            <li>Promotion in last 5 years</li>
+                            <li>Department</li>
+                            <li>Salary level (low, medium, high)</li>
+                            <li>Whether the employee left (target variable)</li>
                         </ul>
+                        <p>The dataset was clean with no missing values but required feature engineering to capture complex relationships between variables.</p>
                     </div>
 
                     <div id="process" class="project-section">
                         <h2>Technical Approach</h2>
                         
-                        <h3>Data Preparation & Exploration</h3>
+                        <h3>Data Exploration & Feature Engineering</h3>
                         <ul>
-                            <li>Cleaned and preprocessed HR dataset containing 14,999 employee records</li>
-                            <li>Engineered relevant features including satisfaction metrics, workload indicators, and tenure variables</li>
-                            <li>Conducted exploratory data analysis to identify preliminary patterns</li>
-                            <li>Visualized correlations between key variables and turnover outcomes</li>
-                            <li>Applied appropriate transformations to optimize model performance</li>
+                            <li>Created 10 engineered features to better capture employee behavior patterns:
+                                <ul>
+                                    <li><strong>work_intensity</strong>: Monthly hours divided by number of projects</li>
+                                    <li><strong>relative_hours</strong>: Monthly hours relative to company average</li>
+                                    <li><strong>overworked</strong>: Binary indicator for employees with above-average hours and high project count</li>
+                                    <li><strong>poor_work_life_balance</strong>: Binary indicator for employees working excessive hours (>200/month)</li>
+                                    <li><strong>productivity</strong>: Evaluation score per project</li>
+                                    <li><strong>satisfaction_per_hour</strong>: Satisfaction level normalized by working hours</li>
+                                    <li><strong>underutilized</strong>: High performers with few projects</li>
+                                    <li><strong>burnout_risk</strong>: Combination of high hours, many projects, and low satisfaction</li>
+                                    <li><strong>flight_risk</strong>: Low satisfaction despite high performance and tenure</li>
+                                    <li><strong>high_performer_risk</strong>: High performers without recent promotion</li>
+                                </ul>
+                            </li>
+                            <li>Uncovered clear bimodal distribution in satisfaction levels among employees who left</li>
+                            <li>Identified a striking U-shaped relationship between number of projects and turnover rate</li>
+                            <li>Discovered sharp differences in work patterns between employees who stayed versus left</li>
                         </ul>
                         
-                        <h3>Model Development</h3>
+                        <h3>Data Preparation & Model Development</h3>
                         <ul>
-                            <li>Implemented multiple classification algorithms (Logistic Regression, Random Forest, XGBoost)</li>
-                            <li>Performed hyperparameter tuning using RandomizedSearchCV and GridSearchCV</li>
-                            <li>Optimized decision threshold to balance precision and recall</li>
-                            <li>Validated model performance using stratified cross-validation</li>
-                            <li>Ensured model robustness through rigorous testing on holdout data</li>
-                        </ul>
-                        
-                        <h3>Evaluation & Interpretation</h3>
-                        <ul>
-                            <li>Evaluated model using comprehensive metrics (accuracy, precision, recall, F1, AUC)</li>
-                            <li>Generated feature importance rankings to identify key turnover drivers</li>
-                            <li>Created visualizations including confusion matrices, ROC curves, and precision-recall curves</li>
-                            <li>Analyzed patterns in misclassified cases to understand model limitations</li>
-                            <li>Developed interpretable insights for non-technical stakeholders</li>
+                            <li>Created a sophisticated preprocessing pipeline including:
+                                <ul>
+                                    <li>Automated data quality checks for outliers and inconsistencies</li>
+                                    <li>Feature scaling with StandardScaler for numerical features</li>
+                                    <li>One-hot encoding for categorical variables</li>
+                                    <li>SMOTE oversampling to address class imbalance (16.6% positive class)</li>
+                                    <li>Feature selection to identify most predictive attributes</li>
+                                </ul>
+                            </li>
+                            <li>Split data into training (60%), validation (20%), and test (20%) sets</li>
+                            <li>Evaluated multiple classification algorithms:
+                                <ul>
+                                    <li>Logistic Regression</li>
+                                    <li>Random Forest</li>
+                                    <li>XGBoost</li>
+                                </ul>
+                            </li>
+                            <li>Conducted extensive hyperparameter tuning using RandomizedSearchCV and GridSearchCV</li>
+                            <li>Optimized classification threshold to maximize F1 score</li>
+                            <li>Analyzed learning curves to diagnose bias-variance tradeoff</li>
                         </ul>
                         
                         <div class="project-image-grid">
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/data_distribution.jpg" alt="Data Distribution Analysis">
-                                <p class="image-caption">Distribution analysis of key features influencing turnover</p>
+                                <img src="images/satisfaction_vs_evaluation.png" alt="Satisfaction Level vs Evaluation Score">
+                                <p class="image-caption">Satisfaction vs Evaluation by Turnover Status</p>
                             </div>
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/correlation_matrix.jpg" alt="Correlation Matrix">
-                                <p class="image-caption">Correlation matrix showing relationships between variables</p>
+                                <img src="images/hours_vs_projects.png" alt="Monthly Hours vs Number of Projects">
+                                <p class="image-caption">Monthly Hours vs Number of Projects with turnover highlighted</p>
                             </div>
                         </div>
                     </div>
 
                     <div id="results" class="project-section">
-                        <h2>Results & Impact</h2>
-                        <p>The XGBoost model demonstrated exceptional performance in predicting employee turnover:</p>
+                        <h2>Results & Insights</h2>
+                        <p>My analysis revealed distinct patterns in employee turnover and produced a highly accurate predictive model:</p>
+                        
+                        <h3>Key Findings</h3>
                         <ul>
-                            <li>Achieved 98.5% prediction accuracy with balanced precision (98.1%) and recall (93.0%)</li>
-                            <li>Identified workload (number of projects), satisfaction level, and tenure as the three primary drivers of employee turnover</li>
-                            <li>Discovered department-specific turnover patterns requiring targeted interventions</li>
-                            <li>Developed an early warning system capable of identifying 93% of employees at risk of leaving</li>
-                            <li>Created data-driven recommendations that could potentially reduce turnover costs by $1.2M annually</li>
+                            <li><strong>Model Performance:</strong> The Random Forest model achieved exceptional results with 98.4% accuracy and 97% F1 score on test data</li>
+                            <li><strong>Primary Turnover Drivers:</strong>
+                                <ul>
+                                    <li><strong>Satisfaction level:</strong> By far the strongest predictor (23.6% importance)</li>
+                                    <li><strong>Work overload:</strong> Employees with 7+ projects had nearly 100% turnover</li>
+                                    <li><strong>Work underload:</strong> Employees with only 2 projects showed 55% turnover</li>
+                                    <li><strong>Hour extremes:</strong> Both overworked (250+ hours) and underworked (130-150 hours) employees were at high risk</li>
+                                </ul>
+                            </li>
+                            <li><strong>Tenure impact:</strong> Employees at 5-year tenure had highest turnover (45%), suggesting a critical career milestone</li>
+                            <li><strong>Unrecognized talent:</strong> High performers without promotion showed 58% higher turnover risk</li>
+                            <li><strong>Calibration analysis:</strong> Revealed model underconfidence in mid-range probabilities, important for risk stratification</li>
                         </ul>
                         
                         <div class="project-image-grid">
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/confusion_matrix.jpg" alt="Confusion Matrix">
-                                <p class="image-caption">Confusion Matrix showing model performance</p>
+                                <img src="images/feature_importance.png" alt="Feature Importance">
+                                <p class="image-caption">Model-based feature importance showing key drivers of turnover</p>
                             </div>
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/learning_curve.jpg" alt="Learning Curve">
-                                <p class="image-caption">Learning Curve demonstrating model training stability</p>
+                                <img src="images/learning_curve.png" alt="Learning Curve">
+                                <p class="image-caption">Learning curve showing model convergence and stability</p>
                             </div>
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/roc_curve.jpg" alt="ROC Curve">
-                                <p class="image-caption">ROC Curve with AUC of 0.98</p>
+                                <img src="images/confusion_matrix.png" alt="Confusion Matrix">
+                                <p class="image-caption">Confusion matrix showing excellent classification performance</p>
                             </div>
                             <div class="project-image-container">
-                                <img src="../../images/projects/salifort-motors/feature_importance.jpg" alt="Feature Importance">
-                                <p class="image-caption">Feature Importance showing key drivers of turnover</p>
+                                <img src="images/roc_curve.png" alt="ROC Curve">
+                                <p class="image-caption">ROC curve with AUC of 0.98 indicating outstanding predictive power</p>
                             </div>
                         </div>
                         
-                        <h3>Key Predictors of Turnover</h3>
-                        <p>The model identified the following as the top predictors of employee turnover:</p>
-                        <ol>
-                            <li><strong>Satisfaction level</strong> (29% importance) - Employees with satisfaction scores below 0.4 were 4.5x more likely to leave</li>
-                            <li><strong>Weekly hours</strong> (18% importance) - Working over 50 hours/week increased turnover probability by 270%</li>
-                            <li><strong>Number of projects</strong> (14% importance) - Both too few (1-2) and too many (6+) projects correlated with higher turnover</li>
-                            <li><strong>Time since last promotion</strong> (12% importance) - Employees not promoted in 4+ years showed 3.2x higher turnover</li>
-                            <li><strong>Salary level</strong> (11% importance) - Low-salary employees had 2.8x higher turnover than high-salary counterparts</li>
-                        </ol>
-                        
-                        <h3>Identified Employee Segments</h3>
-                        <p>Cluster analysis revealed four distinct employee segments at risk:</p>
+                        <h3>Turnover Risk Prediction System</h3>
+                        <p>I developed a complete end-to-end prediction system that:</p>
                         <ul>
-                            <li><strong>Overworked high-performers</strong> (25% of departures) - High project load, long hours, high evaluations</li>
-                            <li><strong>Undervalued veterans</strong> (22% of departures) - Long tenure, few promotions, stagnant salary growth</li>
-                            <li><strong>Disengaged newcomers</strong> (18% of departures) - Low satisfaction, less than 2 years at company</li>
-                            <li><strong>Career-blocked specialists</strong> (16% of departures) - Medium tenure, high skill, limited advancement opportunities</li>
+                            <li>Takes an employee's data as input</li>
+                            <li>Performs feature engineering and preprocessing</li>
+                            <li>Generates a turnover risk probability and classification (Low/Medium/High)</li>
+                            <li>Identifies specific risk factors for that employee</li>
+                            <li>Recommends personalized retention actions based on identified risk factors</li>
                         </ul>
+                        
+                        <div class="project-image-container full-width">
+                            <img src="images/prediction_system.png" alt="HR Prediction System">
+                            <p class="image-caption">Sample output from the HR turnover prediction system showing personalized risk factors and recommendations</p>
+                        </div>
                     </div>
 
                     <div id="conclusion" class="project-section">
-                        <h2>Business Recommendations</h2>
-                        <p>Based on the model findings, I developed five strategic recommendations to address turnover:</p>
+                        <h2>Recommendations & Business Impact</h2>
+                        
+                        <h3>Strategic Recommendations</h3>
+                        <p>Based on my analysis, I developed five strategic recommendations to improve employee retention:</p>
                         
                         <ul class="recommendation-list">
                             <li class="recommendation-item">
-                                <div class="recommendation-title">Workload Management Program</div>
-                                <p>Establish project allocation guidelines with maximum thresholds per employee, with a recommended limit of 3-4 active projects. Implement a workload monitoring system that alerts managers when employees exceed optimal capacity.</p>
+                                <div class="recommendation-title">Workload Management</div>
+                                <p>Implement project caps to limit concurrent projects to a maximum of 5 per employee. Set up alerts for employees consistently working over 200 hours monthly and ensure project distribution avoids both overwork and underutilization.</p>
                             </li>
                             
                             <li class="recommendation-item">
-                                <div class="recommendation-title">Satisfaction Enhancement Initiative</div>
-                                <p>Implement quarterly pulse surveys with concrete follow-up actions, focusing on the key satisfaction drivers identified in the analysis. Create a formal feedback loop with mandatory action plans for departments with below-average satisfaction scores.</p>
+                                <div class="recommendation-title">Career Development</div>
+                                <p>Create clear advancement pathways, especially for employees approaching the 3-5 year tenure mark. Establish regular promotion reviews to ensure high performers aren't overlooked and develop lateral move opportunities when vertical promotion isn't available.</p>
                             </li>
                             
                             <li class="recommendation-item">
-                                <div class="recommendation-title">Tenure-Based Retention Strategy</div>
-                                <p>Design targeted programs for employees at critical tenure milestones (2-3 years, 4-5 years), including career development conversations, skill expansion opportunities, and potential role adjustments to maintain engagement.</p>
+                                <div class="recommendation-title">Compensation Reviews</div>
+                                <p>Conduct targeted salary audits focusing on high performers in low salary classifications. Develop clear compensation growth plans tied to performance metrics and ensure compensation is competitive, particularly in high-risk departments.</p>
                             </li>
                             
                             <li class="recommendation-item">
-                                <div class="recommendation-title">Performance Evaluation Reform</div>
-                                <p>Revise review processes to focus on development rather than assessment, with an emphasis on growth opportunities and skill acquisition. Separate compensation discussions from performance feedback to create a more positive evaluation experience.</p>
+                                <div class="recommendation-title">Department-Specific Strategies</div>
+                                <p>Create customized retention plans for departments with the highest turnover rates. Address department-specific issues through targeted interventions and management training.</p>
                             </li>
                             
                             <li class="recommendation-item">
-                                <div class="recommendation-title">Work-Life Balance Improvement</div>
-                                <p>Introduce flexible scheduling options across all departments and actively monitor overtime hours. Create a culture where taking personal time is encouraged, not penalized, with managers modeling appropriate boundaries.</p>
+                                <div class="recommendation-title">Prediction System Integration</div>
+                                <p>Implement the turnover prediction model as a proactive management tool, establishing intervention protocols for employees flagged as high-risk and conducting quarterly risk assessments.</p>
                             </li>
                         </ul>
                         
-                        <h3>Implementation Plan</h3>
-                        <p>To effectively implement these recommendations, I proposed the following action plan:</p>
-                        <ol>
-                            <li><strong>Deploy Early Warning System (1-2 months):</strong> Integrate the predictive model into HR systems to identify at-risk employees and enable proactive intervention.</li>
-                            <li><strong>Pilot Targeted Interventions (2-3 months):</strong> Select high-risk departments for initial implementation of retention strategies, focusing on quick wins and measurable outcomes.</li>
-                            <li><strong>Scale Successful Programs (3-6 months):</strong> Evaluate pilot results and expand successful initiatives company-wide, with customizations based on departmental needs.</li>
-                            <li><strong>Enhance Data Collection (Ongoing):</strong> Identify additional data points to improve model accuracy, including exit interview insights and employee engagement metrics.</li>
-                            <li><strong>Measure Financial Impact (6-12 months):</strong> Calculate cost savings and ROI of retention initiatives, tracking key metrics including turnover rate, replacement costs, and productivity impacts.</li>
-                        </ol>
-                        
-                        <h3>Reflections & Lessons Learned</h3>
-                        <p>This project reinforced the importance of careful data preparation and feature engineering in building effective predictive models. The most valuable insight was learning to balance technical sophistication with business interpretability - the most complex model isn't always the most useful if stakeholders can't understand how to act on its outputs.</p>
-                        
-                        <p>Key lessons learned:</p>
+                        <h3>Expected Business Impact</h3>
+                        <p>Based on model projections and similar HR interventions, implementing these recommendations would likely result in:</p>
                         <ul>
-                            <li><strong>Business context is critical:</strong> Understanding the true cost of turnover helped frame the problem and quantify the value of solutions</li>
-                            <li><strong>Model explainability matters:</strong> Stakeholders needed to understand why employees were leaving, not just who might leave</li>
-                            <li><strong>Cross-functional collaboration:</strong> Working closely with HR experts improved feature selection and recommendation development</li>
-                            <li><strong>Threshold optimization:</strong> Finding the right balance between precision and recall was essential for practical application</li>
-                            <li><strong>Continuous improvement:</strong> Designing a feedback loop for model refinement as more data becomes available</li>
+                            <li><strong>20-30% reduction in turnover</strong> within 12 months</li>
+                            <li><strong>Potential 15-20% reduction</strong> in annual recruitment and training costs</li>
+                            <li><strong>15% increase in employee satisfaction scores</strong> across high-risk departments</li>
+                            <li><strong>8% productivity improvement</strong> from better workload management</li>
+                            <li><strong>Enhanced knowledge retention</strong> from keeping experienced employees</li>
+                        </ul>
+                        
+                        <h3>Technical Skills Demonstrated</h3>
+                        <p>This project showcased my abilities in:</p>
+                        <ul>
+                            <li><strong>Advanced feature engineering:</strong> Creating meaningful derived features that capture complex patterns</li>
+                            <li><strong>Machine learning pipeline development:</strong> Building end-to-end workflows with preprocessing, model training, and evaluation</li>
+                            <li><strong>Classification modeling:</strong> Implementing and optimizing various algorithms for predictive accuracy</li>
+                            <li><strong>Hyperparameter tuning:</strong> Systematically optimizing model parameters for best performance</li>
+                            <li><strong>Class imbalance handling:</strong> Applying techniques to address unbalanced target distributions</li>
+                            <li><strong>Data visualization:</strong> Creating insightful visualizations to communicate complex patterns</li>
+                            <li><strong>Business analysis:</strong> Translating technical insights into actionable recommendations</li>
                         </ul>
                         
                         <div class="project-buttons">
                             <a href="https://github.com/Tex30/employee-turnover-prediction" class="btn btn-primary" target="_blank">
                                 <i class="fab fa-github"></i> View Code
-                            </a>
-                            <a href="../../files/employee_turnover_report.pdf" class="btn btn-secondary" download>
-                                Download Report
                             </a>
                         </div>
                     </div>
@@ -286,14 +307,7 @@
                                 <i class="fab fa-github"></i>
                                 <a href="https://github.com/Tex30/employee-turnover-prediction" target="_blank">GitHub Repository</a>
                             </li>
-                            <li>
-                                <i class="fas fa-file-powerpoint"></i>
-                                <a href="../../files/employee_turnover_report.pdf" download>Download Report</a>
-                            </li>
-                            <li>
-                                <i class="fas fa-file-alt"></i>
-                                <a href="https://medium.com/@yourusername/salifort-case-study" target="_blank">Case Study Article</a>
-                            </li>
+
                         </ul>
                     </div>
                     
@@ -301,13 +315,16 @@
                         <h3>Technologies Used</h3>
                         <div class="tech-tags">
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Pandas</span>
-                            <span class="tech-tag">Scikit-learn</span>
-                            <span class="tech-tag">Matplotlib</span>
-                            <span class="tech-tag">Seaborn</span>
+                            <span class="tech-tag">scikit-learn</span>
                             <span class="tech-tag">XGBoost</span>
                             <span class="tech-tag">Random Forest</span>
-                            <span class="tech-tag">Logistic Regression</span>
+                            <span class="tech-tag">Pandas</span>
+                            <span class="tech-tag">NumPy</span>
+                            <span class="tech-tag">Matplotlib</span>
+                            <span class="tech-tag">Seaborn</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Feature Engineering</span>
+                            <span class="tech-tag">Data Analysis</span>
                             <span class="tech-tag">Jupyter Notebook</span>
                         </div>
                     </div>
@@ -319,14 +336,14 @@
                                 <img src="../../images/projects/cyclistic-bike-share/thumbnail-small.jpg" alt="Cyclistic Bike Share project thumbnail">
                                 <div class="related-project-info">
                                     <h4>Cyclistic Bike Share Analysis</h4>
-                                    <p>Data Analysis, R, Visualization</p>
+                                    <p>Data Analysis, R, Tableau</p>
                                 </div>
                             </a>
-                            <a href="../data-visualization/" class="related-project">
-                                <img src="../../images/projects/data-visualization/thumbnail-small.jpg" alt="Data Visualization project thumbnail">
+                            <a href="../portfolio-website/" class="related-project">
+                                <img src="../../images/projects/portfolio-website/thumbnail-small.png" alt="Data Visualization project thumbnail">
                                 <div class="related-project-info">
-                                    <h4>Interactive Data Visualization</h4>
-                                    <p>D3.js, JavaScript, Economics</p>
+                                    <h4>Portfolio Website</h4>
+                                    <p>HTML/CSS, JavaScript, Responsive Design</p>
                                 </div>
                             </a>
                         </div>
@@ -362,7 +379,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="../../js/report-generator.js"></script>
     <script src="../../js/main.js"></script>
 </body>
 </html>

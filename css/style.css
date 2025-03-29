@@ -1222,3 +1222,50 @@ nav {
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
 }
+.back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+}
+
+.back-to-top-btn.visible {
+    opacity: 0.9;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+    background-color: var(--primary-dark);
+    opacity: 1;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.back-to-top-btn i {
+    font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .back-to-top-btn {
+        width: 40px;
+        height: 40px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
