@@ -912,7 +912,7 @@ async function generatePDFWithImages() {
             pdf.setFont("Roboto", "normal");
             pdf.setFontSize(9);
             pdf.setTextColor(100, 100, 100);
-            pdf.text(`Generated from Michael Teixeira's Portfolio - michaelteixeira.com`, margin, pageHeight - 10);
+            pdf.text(`Generated from Michael Teixeira's Portfolio - tex30.github.io/portfolio`, margin, pageHeight - 10);
             pdf.text(`Page ${i} of ${totalPages}`, pageWidth - margin - 20, pageHeight - 10, { align: 'right' });
         }
         
