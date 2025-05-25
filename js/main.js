@@ -381,24 +381,60 @@ const createBackToTopButton = function() {
 createBackToTopButton();
 
 
-    // -------------- Dark mode toggle (optional) --------------
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    // Dark Mode Toggle Functionality
+
+// Wait for the DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Create the dark mode toggle button
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.className = 'dark-mode-toggle';
+    darkModeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Assuming you use Font Awesome
+    document.body.appendChild(darkModeToggle);
     
-    if (darkModeToggle) {
-        // Check for saved theme preference
-        if (localStorage.getItem('darkMode') === 'enabled') {
-            document.body.classList.add('dark-mode');
-            darkModeToggle.checked = true;
+    // Check if dark mode is stored in localStorage
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    
+    // Function to enable dark mode
+    function enableDarkMode() {
+        document.documentElement.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('darkMode', 'true');
+    }
+    
+    // Function to disable dark mode
+    function disableDarkMode() {
+        document.documentElement.classList.remove('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('darkMode', 'false');
+    }
+    
+    // Set initial mode based on localStorage or system preference
+    if (isDarkMode) {
+        enableDarkMode();
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // If no preference is saved but system is set to dark mode
+        enableDarkMode();
+    }
+    
+    // Toggle dark mode on button click
+    darkModeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
         }
-        
-        // Toggle dark mode when checkbox changes
-        darkModeToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.add('dark-mode');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                document.body.classList.remove('dark-mode');
-                localStorage.setItem('darkMode', 'disabled');
+    });
+    
+    // Listen for system preference changes
+    if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (!localStorage.getItem('darkMode')) {
+                if (event.matches) {
+                    enableDarkMode();
+                } else {
+                    disableDarkMode();
+                }
             }
         });
     }
