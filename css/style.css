@@ -1286,3 +1286,266 @@ nav {
         right: 20px;
     }
 }
+/* ===== ADD THESE TO YOUR EXISTING CSS FILE ===== */
+
+/* Azure branding colors - ADD TO TOP OF FILE */
+:root {
+    --azure-blue: #0078D4;
+    --azure-blue-light: rgba(0, 120, 212, 0.1);
+}
+
+/* Azure accent classes */
+.azure-accent {
+    color: var(--azure-blue) !important;
+}
+
+.azure-bg {
+    background: var(--azure-blue-light);
+    border-radius: 50%;
+    border: 2px solid var(--azure-blue);
+}
+
+/* Hero Section Enhancements */
+.hero-highlights {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.highlight-item {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.highlight-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-text {
+    display: block;
+    font-size: 0.9rem;
+    color: #fff;
+    opacity: 0.9;
+}
+
+/* Certifications Section - NEW */
+.certifications {
+    padding: 5rem 0;
+    background: #f8f9fa;
+}
+
+.certifications-content {
+    margin-top: 3rem;
+}
+
+.cert-category h3 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #4CAF50;
+    padding-bottom: 0.5rem;
+}
+
+.cert-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cert-item {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cert-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cert-badge {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+}
+
+.cert-badge-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.cert-badge-img:hover {
+    transform: scale(1.1);
+}
+
+.cert-info h4 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+.cert-info p {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.cert-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.cert-status.completed {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.cert-status.in-progress {
+    background: var(--azure-blue-light);
+    color: var(--azure-blue);
+}
+
+/* Enhanced Project Cards */
+.project-card.featured {
+    border: 2px solid #4CAF50;
+}
+
+.project-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.achievement-badge {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
+}
+
+.project-metrics {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-bottom: 0.25rem;
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Enhanced Contact Section */
+.opportunity-focus {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #4CAF50;
+}
+
+.opportunity-focus h4 {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+}
+
+.opportunity-focus ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.opportunity-focus li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.cert-item.in-progress .cert-badge i {
+    animation: pulse 2s infinite;
+}
+
+/* Mobile Responsive Updates - ADD TO YOUR EXISTING MOBILE SECTION */
+@media (max-width: 768px) {
+    .hero-highlights {
+        gap: 1rem;
+    }
+    
+    .highlight-item {
+        padding: 0.75rem;
+        min-width: 120px;
+    }
+    
+    .highlight-number {
+        font-size: 1.5rem;
+    }
+    
+    .cert-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cert-badge {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .project-metrics {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .opportunity-focus {
+        padding: 1rem;
+    }
+}
