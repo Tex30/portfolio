@@ -38,6 +38,7 @@
     <link rel="manifest" href="site.webmanifest">
     
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dark-mode.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Schema Markup for SEO -->
@@ -698,33 +699,15 @@
             document.querySelector('.nav-links').classList.toggle('active');
         });
 
-        // Header scroll effect and Back to Top button
-        const backToTopBtn = document.getElementById('backToTopBtn');
-        
+        // Header scroll effect
         window.addEventListener('scroll', function() {
             const header = document.querySelector('.header');
-            
-            // Header scroll effect
+
             if (window.scrollY > 100) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-            
-            // Back to top button visibility
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-
-        // Back to top button click
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
 
         // Smooth scrolling for navigation links

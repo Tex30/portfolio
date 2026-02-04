@@ -331,92 +331,102 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
     // Handle "Back to Top" link in footer
-const backToTopLink = document.querySelector('.footer-links a[href="#"]');
-if (backToTopLink) {
-    backToTopLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Scroll to the top of the page smoothly
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        
-        console.log('Back to top link clicked');
-    });
-}
+    const backToTopLink = document.querySelector('.footer-links a[href="#"]');
+    if (backToTopLink) {
+        backToTopLink.addEventListener('click', function(e) {
+            e.preventDefault();
 
-// Create floating back-to-top button
-const createBackToTopButton = function() {
-    // Create the button element
-    const backToTopBtn = document.createElement('div');
-    backToTopBtn.id = 'back-to-top-btn';
-    backToTopBtn.className = 'back-to-top-btn';
-    backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    
-    // Append to the body
-    document.body.appendChild(backToTopBtn);
-    
-    // Show or hide the button based on scroll position
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('visible');
-        } else {
-            backToTopBtn.classList.remove('visible');
+            // Scroll to the top of the page smoothly
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            console.log('Back to top link clicked');
+        });
+    }
+
+    // Initialize back-to-top button functionality
+    const initBackToTopButton = function() {
+        // Check if button already exists in HTML
+        let backToTopBtn = document.getElementById('backToTopBtn');
+
+        // If button doesn't exist, create it dynamically
+        if (!backToTopBtn) {
+            backToTopBtn = document.createElement('div');
+            backToTopBtn.id = 'backToTopBtn';
+            backToTopBtn.className = 'back-to-top-btn';
+            backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            document.body.appendChild(backToTopBtn);
         }
-    });
-    
-    // Scroll to top when clicked
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+
+        // Show or hide the button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
         });
-        console.log('Back to top button clicked');
-    });
-};
 
-// Call the function to create the button
-createBackToTopButton();
+        // Scroll to top when clicked
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+            console.log('Back to top button clicked');
+        });
+    };
 
+    // Call the function to initialize the button
+    initBackToTopButton();
+});
 
-    // Dark Mode Toggle Functionality
-
-// Wait for the DOM to be fully loaded
+// Dark Mode Toggle Functionality
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Dark mode toggle initializing...');
+
     // Create the dark mode toggle button
     const darkModeToggle = document.createElement('button');
     darkModeToggle.className = 'dark-mode-toggle';
     darkModeToggle.setAttribute('aria-label', 'Toggle Dark Mode');
-    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Assuming you use Font Awesome
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     document.body.appendChild(darkModeToggle);
-    
-    // Check if dark mode is stored in localStorage
-    const isDarkMode = localStorage.getItem('darkMode') === 'true';
-    
+
+    // Check if dark mode preference is stored in localStorage
+    const storedDarkMode = localStorage.getItem('darkMode');
+
     // Function to enable dark mode
     function enableDarkMode() {
         document.documentElement.classList.add('dark-mode');
         darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         localStorage.setItem('darkMode', 'true');
+        console.log('Dark mode enabled');
     }
-    
+
     // Function to disable dark mode
     function disableDarkMode() {
         document.documentElement.classList.remove('dark-mode');
         darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         localStorage.setItem('darkMode', 'false');
+        console.log('Dark mode disabled');
     }
-    
+
     // Set initial mode based on localStorage or system preference
-    if (isDarkMode) {
+    if (storedDarkMode === 'true') {
+        // User has explicitly chosen dark mode
         enableDarkMode();
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // If no preference is saved but system is set to dark mode
+    } else if (storedDarkMode === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // No preference saved, but system is set to dark mode
         enableDarkMode();
+    } else if (storedDarkMode === 'false') {
+        // User has explicitly chosen light mode
+        disableDarkMode();
     }
-    
+
     // Toggle dark mode on button click
     darkModeToggle.addEventListener('click', () => {
         if (document.documentElement.classList.contains('dark-mode')) {
@@ -425,11 +435,13 @@ document.addEventListener('DOMContentLoaded', function() {
             enableDarkMode();
         }
     });
-    
-    // Listen for system preference changes
+
+    // Listen for system preference changes (only if user hasn't set a preference)
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-            if (!localStorage.getItem('darkMode')) {
+            const userPreference = localStorage.getItem('darkMode');
+            // Only auto-switch if user hasn't set a manual preference
+            if (userPreference === null) {
                 if (event.matches) {
                     enableDarkMode();
                 } else {
@@ -438,4 +450,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    console.log('Dark mode toggle button created and listeners attached');
 });

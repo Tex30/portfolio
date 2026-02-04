@@ -100,6 +100,23 @@
     color: var(--text-color);
 }
 
+:root.dark-mode .project-metrics {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .metric-value {
+    color: var(--success-color);
+}
+
+:root.dark-mode .metric-label {
+    color: var(--text-light);
+}
+
+:root.dark-mode .achievement-badge {
+    background: linear-gradient(135deg, var(--success-color), #20a849);
+}
+
 /* Form elements in dark mode */
 :root.dark-mode input,
 :root.dark-mode textarea,
@@ -114,14 +131,49 @@
     color: var(--text-light);
 }
 
+/* Contact section in dark mode */
+:root.dark-mode .contact {
+    background-color: var(--dark-bg);
+}
+
+:root.dark-mode .contact-info,
+:root.dark-mode .contact-form {
+    color: var(--text-color);
+}
+
+:root.dark-mode .opportunity-focus {
+    background-color: var(--light-bg);
+    border-left-color: var(--success-color);
+}
+
+:root.dark-mode .opportunity-focus h4 {
+    color: var(--secondary-color);
+}
+
+:root.dark-mode .opportunity-focus li {
+    color: var(--text-color);
+}
+
+:root.dark-mode .contact-details {
+    color: var(--text-color);
+}
+
 /* Footer in dark mode */
 :root.dark-mode .footer {
     background-color: var(--dark-bg);
 }
 
 /* About section in dark mode */
+:root.dark-mode .about {
+    background-color: var(--dark-bg);
+}
+
 :root.dark-mode .about-image img {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+:root.dark-mode .about-details {
+    color: var(--text-color);
 }
 
 /* Social links in dark mode */
@@ -234,4 +286,94 @@
 
 :root.dark-mode .lightbox-close:hover {
     background-color: var(--primary-color);
+}
+
+/* Location & Expertise Section in dark mode */
+:root.dark-mode .location-expertise {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--light-bg) 100%);
+}
+
+:root.dark-mode .expertise-card {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .expertise-icon {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+}
+
+:root.dark-mode .government-focus {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .vps-content p {
+    background-color: var(--dark-bg);
+    border-left-color: var(--primary-color);
+}
+
+/* Certifications Section in dark mode */
+:root.dark-mode .certifications {
+    background-color: var(--dark-bg);
+}
+
+:root.dark-mode .cert-item {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .cert-badge {
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+}
+
+:root.dark-mode .cert-info h4 {
+    color: var(--secondary-color);
+}
+
+:root.dark-mode .cert-info p {
+    color: var(--text-light);
+}
+
+:root.dark-mode .cert-status.completed {
+    background: rgba(76, 175, 80, 0.2);
+    color: var(--success-color);
+}
+
+:root.dark-mode .cert-status.in-progress {
+    background: rgba(90, 138, 255, 0.2);
+    color: var(--primary-color);
+}
+
+:root.dark-mode .verify-link {
+    color: var(--primary-color);
+}
+
+:root.dark-mode .verify-link:hover {
+    color: var(--secondary-color);
+}
+
+:root.dark-mode .cert-category h3 {
+    color: var(--secondary-color);
+    border-bottom-color: var(--success-color);
+}
+
+/* Azure accent in dark mode */
+:root.dark-mode .azure-accent {
+    color: #5A8AFF !important;
+}
+
+:root.dark-mode .azure-bg {
+    background: rgba(90, 138, 255, 0.1);
+    border-color: #5A8AFF;
+}
+
+/* ML accent in dark mode */
+:root.dark-mode .ml-accent {
+    color: #20E65A !important;
+}
+
+/* Google accent in dark mode */
+:root.dark-mode .google-accent {
+    color: #5A8AFF !important;
 }
