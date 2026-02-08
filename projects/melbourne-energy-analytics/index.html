@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6MB61WNNMV"></script>
+     <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-6MB61WNNMV');
+     </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melbourne Energy Analytics | Michael Teixeira</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+    <link rel="icon" type="image/png" href="../../favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dark-mode.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="../../">MT</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../../#hero">Home</a></li>
+                    <li><a href="../../#about">About</a></li>
+                    <li><a href="../../#skills">Skills</a></li>
+                    <li><a href="../../#projects">Projects</a></li>
+                    <li><a href="../../#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="project-hero">
+        <div class="container">
+            <div class="project-hero-content">
+                <h1>Melbourne Energy Analytics</h1>
+                <p>Production-ready SQL analytics platform analyzing 250K+ installations and 4.5M energy readings with dynamic time filtering and performance optimization</p>
+                <div class="project-meta">
+                    <div class="project-date">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>Completed: February 2026</span>
+                    </div>
+                    <div class="project-category">
+                        <i class="fas fa-tag"></i>
+                        <span>SQL, PostgreSQL, Python, Streamlit, Power BI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-overview">
+        <div class="container">
+            <div class="project-nav">
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#process">Process</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+            <div class="project-content-wrapper">
+                <div class="project-content">
+                    <div id="overview" class="project-section">
+                        <h2>Project Overview</h2>
+                        <p>I built a production-ready SQL analytics platform analyzing 250,000+ installations and 4.5 million energy readings across Melbourne and regional Victoria. The platform features a star schema database design, dynamic time filtering, and comprehensive performance optimization achieving 7-9x query speedup through strategic indexing.</p>
+
+                        <div class="project-card-info">
+                            <div class="info-item">
+                                <h4>Role</h4>
+                                <p>Database Architect & Developer</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Duration</h4>
+                                <p>3 weeks</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Tools Used</h4>
+                                <p>PostgreSQL 18, Python, Streamlit, Plotly, Power BI</p>
+                            </div>
+                            <div class="info-item">
+                                <h4>Data Volume</h4>
+                                <p>4.7M+ records (250K installations, 4.5M energy readings)</p>
+                            </div>
+                        </div>
+
+                        <h3>Business Problem</h3>
+                        <p>Energy installation companies in Victoria need to track multiple operational dimensions to improve efficiency and profitability. Key questions include: Which contractors consistently deliver quality work on time? Are installations actually reducing energy consumption? Which regions have the highest demand? What are the payment collection patterns?</p>
+
+                        <h3>Dataset Description</h3>
+                        <p>I designed and generated a realistic dataset simulating Victoria's energy efficiency program (VEU) operations:</p>
+                        <ul>
+                            <li>250,000 installations across 10 regions</li>
+                            <li>4.5 million energy readings (pre/post installation)</li>
+                            <li>25 contractors with varying performance levels</li>
+                            <li>24 months of historical data</li>
+                            <li>Realistic patterns: seasonal demand, contractor learning curves, realistic delays</li>
+                        </ul>
+                        <p>The challenge was not just generating data, but ensuring it had realistic statistical patterns that would support meaningful analysis in interviews and demonstrations.</p>
+                    </div>
+
+                    <div id="process" class="project-section">
+                        <h2>Technical Approach</h2>
+
+                        <h3>Database Design & Architecture</h3>
+                        <ul>
+                            <li>Designed a star schema optimized for analytical queries</li>
+                            <li>3 fact tables (installations, payments, energy readings) and 4 dimension tables</li>
+                            <li>Implemented referential integrity with foreign key constraints</li>
+                            <li>Created 10 strategic indexes achieving 7-9x performance improvement</li>
+                            <li>Built 3 materialized views for frequently accessed metrics</li>
+                        </ul>
+
+                        <h3>Data Generation & Validation</h3>
+                        <ul>
+                            <li>Developed Python scripts using pandas and Faker to generate 4.7M+ realistic records</li>
+                            <li>Implemented seasonal patterns (HVAC installations peak in summer/winter)</li>
+                            <li>Modeled contractor learning curves (quality improves up to 15% over time)</li>
+                            <li>Created 16 automated quality checks across Python and SQL layers</li>
+                            <li>Ensured zero NULL timestamp issues through careful data generation logic</li>
+                            <li>Generated energy savings showing 15-30% post-installation reduction</li>
+                        </ul>
+
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/sql-query-sample-1.png" alt="SQL Query Example 1">
+                                <p class="image-caption">Advanced SQL with CTEs and window functions for contractor performance ranking</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/sql-query-sample-2.png" alt="SQL Query Example 2">
+                                <p class="image-caption">Advanced SQL with CTEs and window functions for contractor performance ranking. cont.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="results" class="project-section">
+                        <h2>Results & Insights</h2>
+
+                        <h3>Streamlit Analytics Dashboard</h3>
+                        <p>The interactive Streamlit dashboard provides six visualizations with dynamic time filtering (6/12/24 months) to analyze operational performance:</p>
+
+                        <h4>Key Features</h4>
+                        <ul>
+                            <li><strong>Executive Summary:</strong> 5 KPI cards showing total installations, completion rate, delay rate, satisfaction, and revenue</li>
+                            <li><strong>Installation Trends:</strong> Monthly volume trends with completion status breakdown and revenue correlation</li>
+                            <li><strong>Contractor Performance:</strong> Top 10 contractors by satisfaction with scatter plot showing volume vs quality</li>
+                            <li><strong>Regional Analysis:</strong> Geographic distribution of installations and revenue by region</li>
+                            <li><strong>Energy Savings:</strong> Pre/post consumption comparison validating installation effectiveness</li>
+                            <li><strong>Payment Analysis:</strong> Accounts receivable aging and payment collection patterns</li>
+                        </ul>
+
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/dashboard-hero.png" alt="Dashboard Executive Summary">
+                                <p class="image-caption">Executive dashboard with 5 real-time KPI cards and dynamic time filtering</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/installation-trends.png" alt="Installation Trends">
+                                <p class="image-caption">Monthly trends showing volume, status, revenue, and satisfaction patterns</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/contractor-performance.png" alt="Contractor Performance">
+                                <p class="image-caption">Top 10 contractors with bar chart and scatter plot analysis</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/regional-analysis.png" alt="Regional Analysis">
+                                <p class="image-caption">Pie chart and bar chart showing regional distribution and revenue</p>
+                            </div>
+                        </div>
+
+                        <h3>Power BI Dashboards</h3>
+                        <p>Developed professional Power BI dashboards with advanced DAX measures for executive-level business intelligence:</p>
+
+                        <h4>Dashboard Features</h4>
+                        <ul>
+                            <li><strong>Executive Summary:</strong> KPI cards with time intelligence measures (YTD, MoM growth)</li>
+                            <li><strong>Contractor Performance:</strong> Top 10 rankings, volume vs quality scatter plots, performance tiers</li>
+                            <li><strong>Regional Analysis:</strong> Geographic distribution, revenue by region, regional metrics matrix</li>
+                            <li><strong>Time Series Analysis:</strong> Monthly trends, seasonal patterns, revenue collection over time</li>
+                            <li><strong>Interactive Slicers:</strong> Date range, region, completion status filters synchronized across all pages</li>
+                            <li><strong>Drill-Through Pages:</strong> Detailed contractor and region analysis with contextual filtering</li>
+                        </ul>
+
+                        <h4>Advanced DAX Measures</h4>
+                        <ul>
+                            <li>Time intelligence: YTD calculations, previous month comparisons, MoM growth percentages</li>
+                            <li>Energy savings analysis: Pre/post consumption comparison with SUMX iteration</li>
+                            <li>Performance tiers: Dynamic categorization based on satisfaction scores</li>
+                            <li>Running totals: Cumulative installations with ALLSELECTED filter context</li>
+                            <li>Completion and delay rate calculations with DIVIDE for safe division</li>
+                        </ul>
+
+                        <div class="project-image-grid">
+                            <div class="project-image-container">
+                                <img src="images/powerbi-executive-summary.png.png" alt="Power BI Executive Summary">
+                                <p class="image-caption">Power BI Executive Dashboard with KPI cards and monthly trends</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/powerbi-contractor-performance.png.png" alt="Power BI Contractor Performance">
+                                <p class="image-caption">Contractor performance analysis with top 10 rankings and scatter plot</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/powerbi-regional-analysis.png.png" alt="Power BI Regional Analysis">
+                                <p class="image-caption">Regional distribution and revenue analysis with interactive visualizations</p>
+                            </div>
+                            <div class="project-image-container">
+                                <img src="images/powerbi-time-trends.png.png" alt="Power BI Time Trends">
+                                <p class="image-caption">Time series analysis showing seasonal patterns and revenue trends</p>
+                            </div>
+                        </div>
+
+                        <h3>Performance Optimization Results</h3>
+                        <p>Strategic indexing delivered significant performance improvements:</p>
+                        <ul>
+                            <li><strong>Contractor Performance Query:</strong> 847ms → 92ms (9.2x faster)</li>
+                            <li><strong>Energy Savings Analysis:</strong> 3,241ms → 412ms (7.9x faster)</li>
+                            <li><strong>Payment Aging Report:</strong> 521ms → 68ms (7.7x faster)</li>
+                        </ul>
+                        <p>Optimization techniques included composite indexes, covering indexes with INCLUDE clause, and partial indexes for recent data.</p>
+
+                        <h3>Technical Achievements</h3>
+                        <ul>
+                            <li>4.7 million records generated with realistic statistical patterns</li>
+                            <li>7-9x query performance improvement through strategic indexing</li>
+                            <li>16 quality checks across Python and SQL validation layers</li>
+                            <li>Dynamic SQL generation with parameterized time ranges</li>
+                            <li>3-tier authentication (Streamlit secrets → env → manual input)</li>
+                            <li>Zero NULL timestamp issues through careful data design</li>
+                            <li>Professional Power BI dashboards with 15+ advanced DAX measures</li>
+                            <li>Interactive drill-through pages and synchronized slicers across multiple dashboards</li>
+                        </ul>
+                    </div>
+
+                    <div id="conclusion" class="project-section">
+                        <h2>Recommendations & Conclusion</h2>
+
+                        <h3>Key Learnings</h3>
+                        <p>This project taught me the difference between "working code" and "production-ready code":</p>
+
+                        <ul class="recommendation-list">
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Data Serialization Matters Early</div>
+                                <p>Initially used NULL timestamps for delayed installations, causing CSV serialization issues. Refactored to always generate valid timestamps—delayed jobs simply start later. Lesson: think about data serialization from day one.</p>
+                            </li>
+
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Multi-Layer Validation is Essential</div>
+                                <p>Python validation catches logic errors during generation; SQL validation catches referential integrity issues after loading. Both layers are necessary for production confidence.</p>
+                            </li>
+
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Performance Optimization is Iterative</div>
+                                <p>Started with slow queries (3+ seconds), added indexes (7-9x improvement), then created materialized views. Each layer builds on the previous. Key is measuring before and after each change.</p>
+                            </li>
+
+                            <li class="recommendation-item">
+                                <div class="recommendation-title">Realistic Data Makes Better Analysis</div>
+                                <p>Adding seasonal patterns and contractor learning curves made the analysis more interesting. Interview questions about "what patterns do you see?" have real answers when data has realistic structure.</p>
+                            </li>
+                        </ul>
+
+                        <h3>Future Improvements</h3>
+                        <p>If I were to continue developing this project:</p>
+                        <ol>
+                            <li><strong>Integrate materialized views:</strong> Currently created but not used by dashboard queries</li>
+                            <li><strong>Add pytest unit tests:</strong> Test data generation functions, SQL logic, validation checks</li>
+                            <li><strong>Implement table partitioning:</strong> Partition fact_energy_readings by date for better scale</li>
+                            <li><strong>Add CI/CD pipeline:</strong> GitHub Actions for automated testing and deployment</li>
+                            <li><strong>Build REST API:</strong> FastAPI endpoints for programmatic data access</li>
+                        </ol>
+
+                        <h3>Skills Demonstrated</h3>
+                        <p>This project showcases my abilities in:</p>
+                        <ul>
+                            <li><strong>Advanced SQL:</strong> CTEs, window functions, complex joins, FILTER aggregates, performance tuning</li>
+                            <li><strong>Database Design:</strong> Star schema architecture, normalization, indexing strategy</li>
+                            <li><strong>Performance Optimization:</strong> Query analysis, index selection, materialized views</li>
+                            <li><strong>Data Engineering:</strong> ETL pipelines, data quality validation, error handling</li>
+                            <li><strong>Python Development:</strong> pandas operations, statistical modeling, data generation</li>
+                            <li><strong>Power BI & DAX:</strong> Advanced measures, time intelligence, interactive dashboards, drill-through pages</li>
+                            <li><strong>Dashboard Development:</strong> Streamlit, Plotly, Power BI, interactive visualizations</li>
+                            <li><strong>Production Thinking:</strong> Authentication patterns, validation layers, comprehensive documentation</li>
+                        </ul>
+
+                        <div class="project-buttons">
+                            <a href="https://github.com/Tex30/melbourne-energy-analytics" class="btn btn-primary" target="_blank">
+                                <i class="fab fa-github"></i> View Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-sidebar">
+                    <div class="sidebar-section">
+                        <h3>Project Links</h3>
+                        <ul class="sidebar-links">
+                            <li>
+                                <i class="fab fa-github"></i>
+                                <a href="https://github.com/Tex30/melbourne-energy-analytics" target="_blank">GitHub Repository</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-file-pdf"></i>
+                                <a href="files/Melbourne Energy Analytics.pdf" target="_blank">Full Dashboard PDF</a>
+                            </li>
+                            <li>
+                                <i class="fas fa-chart-bar"></i>
+                                <a href="files/melbourne-energy-analytics.pbix" download>Download Power BI File (.pbix)</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Technologies Used</h3>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">SQL</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Power BI</span>
+                            <span class="tech-tag">DAX</span>
+                            <span class="tech-tag">Streamlit</span>
+                            <span class="tech-tag">Plotly</span>
+                            <span class="tech-tag">pandas</span>
+                            <span class="tech-tag">Database Design</span>
+                            <span class="tech-tag">Performance Optimization</span>
+                            <span class="tech-tag">Data Engineering</span>
+                            <span class="tech-tag">ETL</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Related Projects</h3>
+                        <div class="related-projects">
+                            <a href="../cyclistic-bike-share/" class="related-project">
+                                <img src="../../images/projects/cyclistic-bike-share/thumbnail-small.png" alt="Cyclistic project thumbnail">
+                                <div class="related-project-info">
+                                    <h4>Cyclistic Bike Share</h4>
+                                    <p>Data Analysis, R, Tableau</p>
+                                </div>
+                            </a>
+                            <a href="../salifort-motors/" class="related-project">
+                                <img src="../../images/projects/salifort-motors/thumbnail-small.png" alt="Salifort Motors project thumbnail">
+                                <div class="related-project-info">
+                                    <h4>Salifort Motors HR Analytics</h4>
+                                    <p>Machine Learning, Python</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="../../">MT</a>
+                </div>
+                <p>&copy; 2026 Michael Teixeira. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="../../privacy-policy.html">Privacy Policy</a>
+                    <a href="../../terms-of-service.html">Terms of Service</a>
+                    <a href="#">Back to Top</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top-btn" id="backToTopBtn">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../../js/report-generator.js"></script>
+    <script src="../../js/main.js"></script>
+</body>
+</html>
