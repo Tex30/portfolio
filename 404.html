@@ -8,22 +8,6 @@
          function gtag(){dataLayer.push(arguments);}
          gtag('js', new Date());
          gtag('config', 'G-6MB61WNNMV');
-         
-         // 404 Error Tracker
-         window.addEventListener('load', function() {
-             // Capture information about the 404 error
-             var referrer = document.referrer || 'Direct entry';
-             var requestedUrl = window.location.href;
-             
-             // Send 404 error data to Google Analytics
-             gtag('event', '404_error', {
-                 'event_category': 'Error',
-                 'event_label': requestedUrl,
-                 'referrer': referrer
-             });
-             
-             console.log('404 error tracked: ' + requestedUrl + ' (Referrer: ' + referrer + ')');
-         });
      </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
