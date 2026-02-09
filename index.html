@@ -673,6 +673,13 @@
             e.preventDefault();
             document.getElementById('phoneNumber').style.display = 'inline';
             this.style.display = 'none';
+
+            // Track phone number reveal
+            gtag('event', 'phone_reveal', {
+                'event_category': 'Contact',
+                'event_label': 'Phone Number Revealed',
+                'value': 1
+            });
         });
 
         // Contact form submission
@@ -690,6 +697,12 @@
                 }
             }).then(response => {
                 if (response.ok) {
+                    // Track successful form submission
+                    gtag('event', 'form_submit', {
+                        'event_category': 'Contact',
+                        'event_label': 'Contact Form Submitted',
+                        'value': 10
+                    });
                     window.location.href = "thank-you.html";
                 } else {
                     alert("There was an issue submitting the form. Please try again.");

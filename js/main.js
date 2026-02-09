@@ -453,3 +453,160 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('Dark mode toggle button created and listeners attached');
 });
+
+// Google Analytics Enhanced Event Tracking
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('GA event tracking initialized');
+
+    // Track CV/Resume downloads
+    const cvDownloadLinks = document.querySelectorAll('a[href*="CV"], a[download*="CV"], a[href*="resume"], a[download*="resume"]');
+    cvDownloadLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const fileName = this.getAttribute('download') || this.href.split('/').pop();
+            gtag('event', 'file_download', {
+                'event_category': 'Downloads',
+                'event_label': 'CV Downloaded: ' + fileName,
+                'value': 5
+            });
+            console.log('CV download tracked:', fileName);
+        });
+    });
+
+    // Track project "View Project" clicks
+    const projectViewLinks = document.querySelectorAll('.project-links a:not([target="_blank"])');
+    projectViewLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const projectCard = this.closest('.project-card');
+            const projectName = projectCard ? projectCard.querySelector('h3').textContent : 'Unknown Project';
+            gtag('event', 'project_view', {
+                'event_category': 'Projects',
+                'event_label': 'View Project: ' + projectName,
+                'value': 3
+            });
+            console.log('Project view tracked:', projectName);
+        });
+    });
+
+    // Track project GitHub code links
+    const githubProjectLinks = document.querySelectorAll('.project-links a[target="_blank"][href*="github"]');
+    githubProjectLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const projectCard = this.closest('.project-card');
+            const projectName = projectCard ? projectCard.querySelector('h3').textContent : 'Unknown Project';
+            gtag('event', 'github_code_view', {
+                'event_category': 'Projects',
+                'event_label': 'GitHub Code: ' + projectName,
+                'value': 2
+            });
+            console.log('GitHub code view tracked:', projectName);
+        });
+    });
+
+    // Track external social links (LinkedIn, GitHub profile)
+    const socialLinks = document.querySelectorAll('.social-links a, .social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            let platform = 'Unknown';
+            if (this.href.includes('linkedin')) platform = 'LinkedIn';
+            else if (this.href.includes('github')) platform = 'GitHub Profile';
+            else if (this.href.includes('tex30.github.io')) platform = 'Portfolio Website';
+
+            gtag('event', 'social_click', {
+                'event_category': 'Social',
+                'event_label': platform,
+                'value': 2
+            });
+            console.log('Social link tracked:', platform);
+        });
+    });
+
+    // Track certificate verification clicks
+    const certLinks = document.querySelectorAll('.verify-link, a[href*="coursera.org/share"], a[href*="microsoft.com/api/credentials"]');
+    certLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const certCard = this.closest('.cert-item');
+            const certName = certCard ? certCard.querySelector('h4').textContent : 'Unknown Certificate';
+            gtag('event', 'certificate_verify', {
+                'event_category': 'Certifications',
+                'event_label': 'Verify: ' + certName,
+                'value': 1
+            });
+            console.log('Certificate verification tracked:', certName);
+        });
+    });
+
+    // Track certificate badge clicks
+    const certBadgeLinks = document.querySelectorAll('.cert-link');
+    certBadgeLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const certCard = this.closest('.cert-item');
+            const certName = certCard ? certCard.querySelector('h4').textContent : 'Unknown Certificate';
+            gtag('event', 'certificate_badge_click', {
+                'event_category': 'Certifications',
+                'event_label': 'Badge Click: ' + certName,
+                'value': 1
+            });
+            console.log('Certificate badge click tracked:', certName);
+        });
+    });
+
+    // Track email link clicks
+    const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    emailLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            gtag('event', 'email_click', {
+                'event_category': 'Contact',
+                'event_label': 'Email Link Clicked',
+                'value': 3
+            });
+            console.log('Email link tracked');
+        });
+    });
+
+    // Track navigation section clicks (to understand user journey)
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const section = this.getAttribute('href').replace('#', '');
+            gtag('event', 'navigation', {
+                'event_category': 'Navigation',
+                'event_label': 'Navigate to: ' + section,
+                'value': 0
+            });
+            console.log('Navigation tracked:', section);
+        });
+    });
+
+    // Track "View All Projects" button
+    const viewAllProjectsBtn = document.querySelector('.projects-cta a');
+    if (viewAllProjectsBtn) {
+        viewAllProjectsBtn.addEventListener('click', function(e) {
+            gtag('event', 'view_all_projects', {
+                'event_category': 'Projects',
+                'event_label': 'View All Projects Button',
+                'value': 2
+            });
+            console.log('View All Projects tracked');
+        });
+    }
+
+    // Track scroll depth (25%, 50%, 75%, 100%)
+    let scrollDepths = {25: false, 50: false, 75: false, 100: false};
+    window.addEventListener('scroll', function() {
+        const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+
+        Object.keys(scrollDepths).forEach(depth => {
+            if (scrollPercent >= depth && !scrollDepths[depth]) {
+                scrollDepths[depth] = true;
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Scroll ' + depth + '%',
+                    'value': 0
+                });
+                console.log('Scroll depth tracked:', depth + '%');
+            }
+        });
+    });
+
+    console.log('All GA event tracking initialized successfully');
+});
