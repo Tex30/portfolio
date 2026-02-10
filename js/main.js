@@ -221,8 +221,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
+                    // Track project image click
+                    const projectName = projectCard.querySelector('h3') ? projectCard.querySelector('h3').textContent : 'Unknown Project';
+                    gtag('event', 'project_view', {
+                        'event_category': 'Projects',
+                        'event_label': 'View Project (Image): ' + projectName,
+                        'value': 3
+                    });
+
                     console.log('Project image clicked, navigating to:', projectUrl);
+                    console.log('Project view tracked (image):', projectName);
                     window.location.href = projectUrl;
                 });
             }
@@ -480,10 +489,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const projectName = projectCard ? projectCard.querySelector('h3').textContent : 'Unknown Project';
             gtag('event', 'project_view', {
                 'event_category': 'Projects',
-                'event_label': 'View Project: ' + projectName,
+                'event_label': 'View Project (Button): ' + projectName,
                 'value': 3
             });
-            console.log('Project view tracked:', projectName);
+            console.log('Project view tracked (button):', projectName);
         });
     });
 
@@ -587,6 +596,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 'value': 2
             });
             console.log('View All Projects tracked');
+        });
+    }
+
+    // Track Hero "View Projects" button
+    const heroViewProjectsBtn = document.querySelector('.hero-cta a[href="#projects"]');
+    if (heroViewProjectsBtn) {
+        heroViewProjectsBtn.addEventListener('click', function(e) {
+            gtag('event', 'hero_cta_click', {
+                'event_category': 'Hero',
+                'event_label': 'Hero View Projects Button',
+                'value': 4
+            });
+            console.log('Hero View Projects button tracked');
         });
     }
 
