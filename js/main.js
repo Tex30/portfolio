@@ -238,107 +238,112 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // -------------- Image lightbox functionality --------------
-    // Select all images that should have lightbox functionality
-    // Exclude project card images which we've already handled above
-    const lightboxImages = document.querySelectorAll('.project-image-container img, .project-section img');
-    
+    // -------------- Image lightbox functionality with navigation --------------
+    // Select all project images, excluding project card thumbnails
+    const lightboxImages = Array.from(document.querySelectorAll('.project-image-container img, .project-section img')).filter(img => !img.closest('.project-card'));
+
     if (lightboxImages.length > 0) {
         console.log(`Lightbox initialized for ${lightboxImages.length} images`);
-        
-        // Create lightbox element once and append to body (we'll reuse it)
+
+        let currentIndex = 0;
+
+        // Create lightbox element once and append to body
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
         lightbox.innerHTML = `
             <div class="lightbox-content">
                 <span class="lightbox-close">&times;</span>
+                <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
                 <img src="" alt="">
+                <button class="lightbox-next" aria-label="Next image">&#10095;</button>
                 <div class="lightbox-caption"></div>
+                <div class="lightbox-counter"></div>
             </div>
         `;
         document.body.appendChild(lightbox);
-        
-        // Reference elements we'll need to update
+
+        // Reference elements
         const lightboxImg = lightbox.querySelector('img');
         const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        const lightboxCounter = lightbox.querySelector('.lightbox-counter');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
-        
-        // Add click event to each image
-        lightboxImages.forEach(img => {
-            // Skip if this image is already part of a project card
-            if (img.closest('.project-card')) {
-                return;
+        const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+        const lightboxNext = lightbox.querySelector('.lightbox-next');
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const img = lightboxImages[currentIndex];
+            let caption = '';
+            if (img.nextElementSibling && img.nextElementSibling.classList.contains('image-caption')) {
+                caption = img.nextElementSibling.textContent;
             }
-            
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightboxCaption.textContent = caption;
+            lightboxCounter.textContent = lightboxImages.length > 1 ? `${currentIndex + 1} / ${lightboxImages.length}` : '';
+            lightboxPrev.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+            lightboxNext.style.display = lightboxImages.length > 1 ? 'flex' : 'none';
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            console.log('Lightbox opened for image:', img.src);
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+            console.log('Lightbox closed');
+        }
+
+        function showPrev() {
+            openLightbox((currentIndex - 1 + lightboxImages.length) % lightboxImages.length);
+        }
+
+        function showNext() {
+            openLightbox((currentIndex + 1) % lightboxImages.length);
+        }
+
+        // Add click event to each image
+        lightboxImages.forEach((img, index) => {
+            img.style.cursor = 'pointer';
             img.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                
-                // Get caption if it exists
-                let caption = '';
-                if (this.nextElementSibling && this.nextElementSibling.classList.contains('image-caption')) {
-                    caption = this.nextElementSibling.textContent;
-                }
-                
-                // Update lightbox content
-                lightboxImg.src = this.src;
-                lightboxImg.alt = this.alt;
-                lightboxCaption.textContent = caption;
-                
-                // Show lightbox
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
-                
-                console.log('Lightbox opened for image:', this.src);
+                openLightbox(index);
             });
-            
-            // Add cursor pointer to show images are clickable
-            img.style.cursor = 'pointer';
         });
-        
+
+        // Prev / Next button clicks
+        lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); showPrev(); });
+        lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); showNext(); });
+
         // Close lightbox when clicking close button
-        lightboxClose.addEventListener('click', function(e) {
-            e.stopPropagation();
-            lightbox.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
-            
-            // Clear src after transition to prevent memory issues
-            setTimeout(() => {
-                lightboxImg.src = '';
-            }, 300);
-            
-            console.log('Lightbox closed');
-        });
-        
+        lightboxClose.addEventListener('click', function(e) { e.stopPropagation(); closeLightbox(); });
+
         // Close lightbox when clicking background
         lightbox.addEventListener('click', function(e) {
-            if (e.target === this) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-                
-                // Clear src after transition to prevent memory issues
-                setTimeout(() => {
-                    lightboxImg.src = '';
-                }, 300);
-                
-                console.log('Lightbox closed by background click');
-            }
+            if (e.target === this) closeLightbox();
         });
-        
-        // Handle escape key to close lightbox
+
+        // Keyboard navigation: Escape, ArrowLeft, ArrowRight
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = ''; // Restore scrolling
-                
-                // Clear src after transition to prevent memory issues
-                setTimeout(() => {
-                    lightboxImg.src = '';
-                }, 300);
-                
-                console.log('Lightbox closed by escape key');
-            }
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') showPrev();
+            else if (e.key === 'ArrowRight') showNext();
         });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        lightbox.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', function(e) {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) showNext(); else showPrev();
+            }
+        }, { passive: true });
     }
 
     // Handle "Back to Top" link in footer
